@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinTrack.View"
+        xmlns:help="clr-namespace:CoinTrack.Helpers"
         xmlns:vm="clr-namespace:CoinTrack.ViewModel"
         mc:Ignorable="d"
         Title="CoinTrack"
@@ -25,18 +26,20 @@
         <Style TargetType="TextBlock" x:Key="Rank">
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
+        <help:WidthFixConverter x:Key="WidthFix" />
     </Window.Resources>
 
-    <DockPanel Margin="10">
+    <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <Button Command="{Binding FetchData}" Height="50" Width="150">Fetch data</Button>
+            <Button Command="{Binding FetchData}" Height="30" Width="150">Fetch data</Button>
         </Grid>
 
-        <DockPanel MaxWidth="960" HorizontalAlignment="Center">
+        <DockPanel>
 
             <!--Headers-->
-            <Grid DockPanel.Dock="Top" Margin="5 0">
+            <Grid DockPanel.Dock="Top" Margin="5 15" x:Name="Headers">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="35" />
                     <ColumnDefinition Width="280" />
                     <ColumnDefinition Width="95" />
@@ -45,6 +48,7 @@
                     <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="140" />
                     <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.Resources>
                     <Style TargetType="TextBlock">
@@ -53,22 +57,24 @@
                         <Setter Property="Foreground" Value="#4a4a4a" />
                     </Style>
                 </Grid.Resources>
-                <TextBlock Grid.Column="0" Text="#" HorizontalAlignment="Center" />
-                <TextBlock Grid.Column="1" Text="Coin" />
-                <TextBlock Grid.Column="2" Text="Price" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Text="1h" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="4" Text="24h" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="5" Text="7d" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="6" Text="24h Volume" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="7" Text="Market Cap" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="1" Text="#" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="2" Text="Coin" />
+                <TextBlock Grid.Column="3" Text="Price" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="4" Text="1h" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="5" Text="24h" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="6" Text="7d" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="7" Text="24h Volume" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="8" Text="Market Cap" HorizontalAlignment="Right" />
             </Grid>
 
             <!--Data-->
             <ListView ItemsSource="{Binding Coins}" BorderThickness="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid MinWidth="900" Margin="0 5" HorizontalAlignment="Stretch">
+                        <Grid
+                            MinWidth="900" Margin="0 2">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="35" />
                                 <ColumnDefinition Width="280" />
                                 <ColumnDefinition Width="95" />
@@ -77,11 +83,15 @@
                                 <ColumnDefinition Width="70" />
                                 <ColumnDefinition Width="140" />
                                 <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+                            <Grid.Width>
+                                <Binding Converter="{StaticResource WidthFix}" ElementName="Headers" Path="ActualWidth"/>
+                            </Grid.Width>
                             <TextBlock
-                                Grid.Column="0" Text="{Binding Currency.Rank}"
+                                Grid.Column="1" Text="{Binding Currency.Rank}"
                                 Style="{StaticResource Rank}" />
-                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <StackPanel Grid.Column="2" Orientation="Horizontal">
                                 <Image
                                     Source="{Binding Currency.Image}"
                                     Width="20" Height="20" Margin="0 0 8 0"
@@ -95,28 +105,27 @@
                                     VerticalAlignment="Center" Foreground="Gray" Padding="10 0" />
                             </StackPanel>
                             <TextBlock
-                                Grid.Column="2" Text="{Binding Price}"
+                                Grid.Column="3" Text="{Binding Price}"
                                 Style="{StaticResource Numbers}" />
                             <TextBlock
-                                Grid.Column="3" Text="{Binding PriceChangePercentage1H}"
+                                Grid.Column="4" Text="{Binding PriceChangePercentage1H}"
                                 Style="{StaticResource Numbers}" />
                             <TextBlock
-                                Grid.Column="4" Text="{Binding PriceChangePercentage24H}"
+                                Grid.Column="5" Text="{Binding PriceChangePercentage24H}"
                                 Style="{StaticResource Numbers}" />
                             <TextBlock
-                                Grid.Column="5" Text="{Binding PriceChangePercentage7D}"
+                                Grid.Column="6" Text="{Binding PriceChangePercentage7D}"
                                 Style="{StaticResource Numbers}" />
                             <TextBlock
-                                Grid.Column="6" Text="{Binding Volume24H}"
+                                Grid.Column="7" Text="{Binding Volume24H}"
                                 Style="{StaticResource Numbers}" />
                             <TextBlock
-                                Grid.Column="7" Text="{Binding MarketCap}"
+                                Grid.Column="8" Text="{Binding MarketCap}"
                                 Style="{StaticResource Numbers}" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </DockPanel>
     </DockPanel>
 </Window>
