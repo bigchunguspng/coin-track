@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+using System.Linq;
 using CoinTrack.Helpers;
 using CoinTrack.Model;
 
@@ -5,20 +7,20 @@ namespace CoinTrack.ViewModel;
 
 public class MainViewModel : NotifyPropertyChanged
 {
-    private string _data = null!;
-
     private TopNCurrencies Currencies { get; } = new();
 
-    public string Data
+    private ObservableCollection<CurrencyBasicViewModel> _coins = null!;
+
+    public ObservableCollection<CurrencyBasicViewModel> Coins
     {
-        get => _data;
-        set => SetField(ref _data, value);
+        get => _coins;
+        set => SetField(ref _coins, value);
     }
 
     public RelayCommand FetchData { get; }
 
     public MainViewModel()
     {
-        FetchData = new RelayCommand(() => Data = Currencies.FetchData().Result);
+        FetchData = new RelayCommand(() => Coins = new(Currencies.FetchData().Result.Select(x => new CurrencyBasicViewModel(x))));
     }
 }

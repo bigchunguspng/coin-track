@@ -8,7 +8,11 @@ public class RelayCommand : ICommand
     private readonly Action _execute;
     private readonly Func<bool>? _canExecute;
 
-    public event EventHandler? CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged
+    {
+        add => CommandManager.RequerySuggested += value;
+        remove => CommandManager.RequerySuggested -= value;
+    }
 
 
     public RelayCommand(Action execute)

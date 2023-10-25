@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CoinTrack.ViewModel;
 
 namespace CoinTrack.View
 {
@@ -10,6 +11,11 @@ namespace CoinTrack.View
         public MainWindow()
         {
             InitializeComponent();
+
+            var vm = new MainViewModel();
+            
+            DataContext = vm;
+            vm.FetchData.Execute(this);
         }
     }
 }
