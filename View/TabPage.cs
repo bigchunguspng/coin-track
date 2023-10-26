@@ -29,6 +29,17 @@ public class TabBar : NotifyPropertyChanged
 
         Tabs = new ObservableCollection<TabPage>(tabs);
         ActiveTab = Tabs[0];
+
+        TabSwitchLeft = new RelayCommand(_ =>
+        {
+            var count = Tabs.Count;
+            ActiveTab = Tabs[(Tabs.IndexOf(ActiveTab) + count - 1) % count];
+        });
+        TabSwitchRight = new RelayCommand(_ =>
+        {
+            var count = Tabs.Count;
+            ActiveTab = Tabs[(Tabs.IndexOf(ActiveTab) + count + 1) % count];
+        });
     }
 
     public ObservableCollection<TabPage> Tabs { get; set; }
@@ -38,6 +49,10 @@ public class TabBar : NotifyPropertyChanged
         get => _activeTab;
         set => SetField(ref _activeTab, value);
     }
+
+    public RelayCommand TabSwitchLeft { get; set; }
+    
+    public RelayCommand TabSwitchRight { get; set; }
 
     public void NewTab(Page page)
     {

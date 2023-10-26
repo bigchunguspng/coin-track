@@ -103,4 +103,13 @@
         <Frame Content="{Binding TabBar.ActiveTab.Page}" NavigationUIVisibility="Hidden" />
 
     </DockPanel>
+
+    <Window.InputBindings>
+        <KeyBinding
+            Command="{Binding TabBar.TabSwitchLeft}"
+            Modifiers="Alt" Key="PageUp" />
+        <KeyBinding
+            Command="{Binding TabBar.TabSwitchRight}"
+            Modifiers="Alt" Key="PageDown" />
+    </Window.InputBindings>
 </Window>
