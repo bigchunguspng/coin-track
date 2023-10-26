@@ -1,0 +1,19 @@
+<Page x:Class="CoinTrack.View.CurrencyView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CoinTrack.View"
+      xmlns:vm="clr-namespace:CoinTrack.ViewModel"
+      mc:Ignorable="d"
+      Title="{Binding Currency.Name}" Height="450" Width="800">
+    
+    <Page.DataContext>
+        <vm:CurrencyViewModel/>
+    </Page.DataContext>
+    
+    <Grid>
+        <TextBlock Text="{Binding Currency.Name}"></TextBlock>
+        <TextBlock Text="{Binding Currency.Symbol}"></TextBlock>
+    </Grid>
+</Page>

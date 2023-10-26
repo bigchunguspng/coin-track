@@ -3,11 +3,10 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace CoinTrack.Model;
 
-public class TopNCurrencies
+public class TopCurrencies
 {
     // Cache / Update Frequency: every 45 seconds
 
@@ -21,10 +20,10 @@ public class TopNCurrencies
         }
     };
 
-    private List<CurrencyBasicInfo> Coins { get; set; } = null!;
+    private List<CurrencySummary> Coins { get; set; } = null!;
 
 
-    public async Task<List<CurrencyBasicInfo>> FetchData(int perPage = 20)
+    public async Task<List<CurrencySummary>> FetchData(int perPage = 20)
     {
         var url = string.Format(_url, perPage.ToString());
 
@@ -34,7 +33,7 @@ public class TopNCurrencies
         
         var data = await response.Content.ReadAsStringAsync(); // string
 
-        Coins = JsonConvert.DeserializeObject<List<CurrencyBasicInfo>>(data)!;
+        Coins = JsonConvert.DeserializeObject<List<CurrencySummary>>(data)!;
 
         return Coins;
     }

@@ -7,11 +7,11 @@ namespace CoinTrack.ViewModel;
 
 public class TopCurrenciesViewModel : NotifyPropertyChanged
 {
-    private TopNCurrencies Currencies { get; } = new();
+    private TopCurrencies Currencies { get; } = new();
 
-    private ObservableCollection<CurrencyBasicViewModel> _coins = null!;
+    private ObservableCollection<CurrencySummaryViewModel> _coins = null!;
 
-    public ObservableCollection<CurrencyBasicViewModel> Coins
+    public ObservableCollection<CurrencySummaryViewModel> Coins
     {
         get => _coins;
         set => SetField(ref _coins, value);
@@ -21,9 +21,9 @@ public class TopCurrenciesViewModel : NotifyPropertyChanged
 
     public TopCurrenciesViewModel()
     {
-        FetchData = new RelayCommand(() =>
+        FetchData = new RelayCommand((_) =>
         {
-            Coins = new(Currencies.FetchData().Result.Select(x => new CurrencyBasicViewModel(x)));
+            Coins = new(Currencies.FetchData().Result.Select(x => new CurrencySummaryViewModel(x)));
         });
     }
 }

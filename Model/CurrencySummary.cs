@@ -2,7 +2,8 @@ using Newtonsoft.Json;
 
 namespace CoinTrack.Model;
 
-public class CurrencyBasicInfo
+/// <summary> Data to be showed on the main page. </summary>
+public class CurrencySummary
 {
     [JsonProperty("id")]
     public string Id { get; set; } = null!;

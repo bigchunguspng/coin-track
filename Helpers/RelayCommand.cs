@@ -5,7 +5,7 @@ namespace CoinTrack.Helpers;
 
 public class RelayCommand : ICommand
 {
-    private readonly Action _execute;
+    private readonly Action<object?> _execute;
     private readonly Func<bool>? _canExecute;
 
     public event EventHandler? CanExecuteChanged
@@ -15,14 +15,14 @@ public class RelayCommand : ICommand
     }
 
 
-    public RelayCommand(Action execute)
+    public RelayCommand(Action<object?> execute)
     {
         ArgumentNullException.ThrowIfNull(execute);
 
         _execute = execute;
     }
     
-    public RelayCommand(Action execute, Func<bool> canExecute)
+    public RelayCommand(Action<object?> execute, Func<bool> canExecute)
     {
         ArgumentNullException.ThrowIfNull(execute);
         ArgumentNullException.ThrowIfNull(canExecute);
@@ -31,7 +31,7 @@ public class RelayCommand : ICommand
         _canExecute = canExecute;
     }
 
-    public void Execute(object? parameter) => _execute();
+    public void Execute(object? parameter) => _execute(parameter);
 
     public bool CanExecute(object? parameter) => _canExecute is null || _canExecute.Invoke();
 }

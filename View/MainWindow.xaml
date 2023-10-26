@@ -66,6 +66,7 @@
         <ListView
             DockPanel.Dock="Top"
             ItemsSource="{Binding Pages}"
+            SelectedItem="{Binding ActivePage}"
             BorderThickness="0 0 0 2" BorderBrush="#B4E29C"
             Margin="0 0 0 5"
             Background="{StaticResource LightGreen}">
