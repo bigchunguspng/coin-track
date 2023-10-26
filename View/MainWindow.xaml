@@ -20,13 +20,10 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <Style TargetType="TextBlock" x:Key="Numbers">
-            <Setter Property="HorizontalAlignment" Value="Right" />
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#212529" />
         </Style>
-        <Style TargetType="TextBlock" x:Key="Rank">
-            <Setter Property="HorizontalAlignment" Value="Center" />
-        </Style>
-        
+
         <c:ActualWidthFixConverter x:Key="ActualWidthFix" />
         <c:PercentToColorConverter x:Key="PercentToColor" />
     </Window.Resources>
@@ -70,11 +67,14 @@
             </Grid>
 
             <!--Data-->
-            <ListView ItemsSource="{Binding Coins}" BorderThickness="0">
+            <ListView
+                ItemsSource="{Binding Coins}"
+                BorderThickness="0" Background="Transparent"
+                ItemContainerStyle="{StaticResource Coins}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid
-                            MinWidth="900" Margin="0 2">
+                            MinWidth="900" Margin="0 4">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="35" />
@@ -88,45 +88,61 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.Width>
-                                <Binding ElementName="Headers" Path="ActualWidth" Converter="{StaticResource ActualWidthFix}"/>
+                                <Binding
+                                    ElementName="Headers"
+                                    Path="ActualWidth"
+                                    Converter="{StaticResource ActualWidthFix}" />
                             </Grid.Width>
+
                             <TextBlock
-                                Grid.Column="1" Text="{Binding Currency.Rank}"
-                                Style="{StaticResource Rank}" />
+                                Grid.Column="1"
+                                Text="{Binding Currency.Rank}"
+                                HorizontalAlignment="Center" />
                             <StackPanel Grid.Column="2" Orientation="Horizontal">
                                 <Image
                                     Source="{Binding Currency.Image}"
                                     Width="20" Height="20" Margin="0 0 8 0"
                                     RenderOptions.BitmapScalingMode="HighQuality" />
-                                <TextBlock
-                                    Text="{Binding Currency.Name}"
-                                    VerticalAlignment="Center"
-                                    FontWeight="Bold" FontSize="14" />
-                                <TextBlock
-                                    Text="{Binding Symbol}"
-                                    VerticalAlignment="Center" Foreground="Gray" Padding="10 0" />
+                                <Button
+                                    Style="{StaticResource HrefButton}"
+                                    HorizontalAlignment="Left"
+                                    HorizontalContentAlignment="Left"
+                                    Width="240">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Text="{Binding Currency.Name}"
+                                            VerticalAlignment="Center"
+                                            Foreground="#333333"
+                                            FontWeight="Bold" FontSize="14" />
+                                        <TextBlock
+                                            Text="{Binding Symbol}"
+                                            Padding="8 0"
+                                            VerticalAlignment="Center"
+                                            Foreground="#64748b" />
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                             <TextBlock
                                 Grid.Column="3" Text="{Binding Price}"
-                                Style="{StaticResource Numbers}" />
+                                HorizontalAlignment="Right" />
                             <TextBlock
                                 Grid.Column="4" Text="{Binding PriceChangePercentage1H}"
-                                Style="{StaticResource Numbers}"
+                                HorizontalAlignment="Right"
                                 Foreground="{Binding Path=Currency.PriceChangePercentage1H, Converter={StaticResource PercentToColor}}" />
                             <TextBlock
                                 Grid.Column="5" Text="{Binding PriceChangePercentage24H}"
-                                Style="{StaticResource Numbers}"
+                                HorizontalAlignment="Right"
                                 Foreground="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToColor}}" />
                             <TextBlock
                                 Grid.Column="6" Text="{Binding PriceChangePercentage7D}"
-                                Style="{StaticResource Numbers}"
+                                HorizontalAlignment="Right"
                                 Foreground="{Binding Path=Currency.PriceChangePercentage7D, Converter={StaticResource PercentToColor}}" />
                             <TextBlock
                                 Grid.Column="7" Text="{Binding Volume24H}"
-                                Style="{StaticResource Numbers}" />
+                                HorizontalAlignment="Right" />
                             <TextBlock
                                 Grid.Column="8" Text="{Binding MarketCap}"
-                                Style="{StaticResource Numbers}" />
+                                HorizontalAlignment="Right" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

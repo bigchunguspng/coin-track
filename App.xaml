@@ -4,6 +4,38 @@
              xmlns:local="clr-namespace:CoinTrack"
              StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <Style TargetType="ContentControl" x:Key="ControlBase">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style TargetType="ListViewItem" x:Key="Coins" BasedOn="{StaticResource ControlBase}">
+            <Setter Property="Focusable" Value="False"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f0f5fa" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="HrefButton" BasedOn="{StaticResource ControlBase}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
     </Application.Resources>
 </Application>
