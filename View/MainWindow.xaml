@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinTrack.View"
-        xmlns:help="clr-namespace:CoinTrack.Helpers"
+        xmlns:c="clr-namespace:CoinTrack.Converters"
         xmlns:vm="clr-namespace:CoinTrack.ViewModel"
         mc:Ignorable="d"
         Title="CoinTrack"
@@ -26,7 +26,9 @@
         <Style TargetType="TextBlock" x:Key="Rank">
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
-        <help:WidthFixConverter x:Key="WidthFix" />
+        
+        <c:ActualWidthFixConverter x:Key="ActualWidthFix" />
+        <c:PercentToColorConverter x:Key="PercentToColor" />
     </Window.Resources>
 
     <DockPanel>
@@ -86,7 +88,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.Width>
-                                <Binding Converter="{StaticResource WidthFix}" ElementName="Headers" Path="ActualWidth"/>
+                                <Binding ElementName="Headers" Path="ActualWidth" Converter="{StaticResource ActualWidthFix}"/>
                             </Grid.Width>
                             <TextBlock
                                 Grid.Column="1" Text="{Binding Currency.Rank}"
@@ -109,13 +111,16 @@
                                 Style="{StaticResource Numbers}" />
                             <TextBlock
                                 Grid.Column="4" Text="{Binding PriceChangePercentage1H}"
-                                Style="{StaticResource Numbers}" />
+                                Style="{StaticResource Numbers}"
+                                Foreground="{Binding Path=Currency.PriceChangePercentage1H, Converter={StaticResource PercentToColor}}" />
                             <TextBlock
                                 Grid.Column="5" Text="{Binding PriceChangePercentage24H}"
-                                Style="{StaticResource Numbers}" />
+                                Style="{StaticResource Numbers}"
+                                Foreground="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToColor}}" />
                             <TextBlock
                                 Grid.Column="6" Text="{Binding PriceChangePercentage7D}"
-                                Style="{StaticResource Numbers}" />
+                                Style="{StaticResource Numbers}"
+                                Foreground="{Binding Path=Currency.PriceChangePercentage7D, Converter={StaticResource PercentToColor}}" />
                             <TextBlock
                                 Grid.Column="7" Text="{Binding Volume24H}"
                                 Style="{StaticResource Numbers}" />
