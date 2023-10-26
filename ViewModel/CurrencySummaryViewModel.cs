@@ -19,7 +19,7 @@ public class CurrencySummaryViewModel
             var details = JsonConvert.DeserializeObject<CurrencyDetails>(serializedParent)!;
 
             CurrencyViewModel.Temp = details;
-            MainViewModel.Instance.NewPage.Execute(new CurrencyView());
+            MainViewModel.Instance.TabBar.NewTab(new CurrencyView());
         });
     }
 

@@ -11,9 +11,9 @@
     <Page.DataContext>
         <vm:CurrencyViewModel/>
     </Page.DataContext>
-    
-    <Grid>
+
+    <StackPanel>
         <TextBlock Text="{Binding Currency.Name}"></TextBlock>
         <TextBlock Text="{Binding Currency.Symbol}"></TextBlock>
-    </Grid>
+    </StackPanel>
 </Page>
