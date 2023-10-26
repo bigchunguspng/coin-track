@@ -1,26 +1,27 @@
 using System.Collections.ObjectModel;
-using System.Linq;
+using System.Windows.Controls;
 using CoinTrack.Helpers;
-using CoinTrack.Model;
+using CoinTrack.View;
 
 namespace CoinTrack.ViewModel;
 
 public class MainViewModel : NotifyPropertyChanged
 {
-    private TopNCurrencies Currencies { get; } = new();
-
-    private ObservableCollection<CurrencyBasicViewModel> _coins = null!;
-
-    public ObservableCollection<CurrencyBasicViewModel> Coins
-    {
-        get => _coins;
-        set => SetField(ref _coins, value);
-    }
-
-    public RelayCommand FetchData { get; }
+    private Page _activePage = null!;
 
     public MainViewModel()
     {
-        FetchData = new RelayCommand(() => Coins = new(Currencies.FetchData().Result.Select(x => new CurrencyBasicViewModel(x))));
+        Pages = new ObservableCollection<Page>() { new TopCurrencies() };
+        ActivePage = Pages[0];
     }
+
+    public ObservableCollection<Page> Pages { get; set; }
+
+    public Page ActivePage
+    {
+        get => _activePage;
+        set => SetField(ref _activePage, value);
+    }
+
+    //public RelayCommand ClosePage { get; }
 }

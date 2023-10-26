@@ -29,7 +29,7 @@
             </Style.Setters>
             <Style.Triggers>
                 <Trigger Property="Button.IsMouseOver" Value="True">
-                    <Setter Property="Button.Background" Value="#c8c8c8" />
+                    <Setter Property="Button.Background" Value="#D6DFC8" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -52,7 +52,7 @@
         <Style TargetType="Button" x:Key="CloseButton" BasedOn="{StaticResource TitleBarButton}">
             <Style.Triggers>
                 <Trigger Property="Button.IsMouseOver" Value="True">
-                    <Setter Property="Button.Background" Value="#df0216" />
+                    <Setter Property="Button.Background" Value="#E13A3E" />
                     <Setter Property="Button.Foreground" Value="White" />
                 </Trigger>
             </Style.Triggers>

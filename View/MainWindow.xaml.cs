@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using CoinTrack.ViewModel;
 using static System.Windows.WindowState;
 
 namespace CoinTrack.View
@@ -20,11 +19,6 @@ namespace CoinTrack.View
             Minimize.Click += delegate { WindowState = Minimized; };
             Maximize.Click += delegate { WindowState = WindowState == Maximized ? Normal : Maximized; };
             CloseWindow.Click += delegate { Close(); };
-
-            var context = new MainViewModel();
-
-            DataContext = context;
-            context.FetchData.Execute(this);
         }
     }
 }
