@@ -4,9 +4,62 @@
              xmlns:local="clr-namespace:CoinTrack"
              StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
-        
-        <Style TargetType="ContentControl" x:Key="ControlBase">
+
+        <Style TargetType="ContentControl" x:Key="Plain">
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="TitleBarButton" BasedOn="{StaticResource Plain}">
+            <Style.Setters>
+                <Setter Property="Width" Value="46" />
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Background" Value="#c8c8c8" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="MaximizeButton" BasedOn="{StaticResource TitleBarButton}">
+            <Style.Triggers>
+                <DataTrigger
+                    Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                    Value="Normal">
+                    <Setter Property="Content" Value="&#xE739;" />
+                </DataTrigger>
+                <DataTrigger
+                    Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                    Value="Maximized">
+                    <Setter Property="Content" Value="&#xE923;" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="CloseButton" BasedOn="{StaticResource TitleBarButton}">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Background" Value="#df0216" />
+                    <Setter Property="Button.Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style TargetType="ContentControl" x:Key="ControlBase" BasedOn="{StaticResource Plain}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ContentControl">
@@ -17,25 +70,24 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style TargetType="ListViewItem" x:Key="Coins" BasedOn="{StaticResource ControlBase}">
-            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Focusable" Value="False" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#f0f5fa" />
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style TargetType="Button" x:Key="HrefButton" BasedOn="{StaticResource ControlBase}">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="Transparent" />
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
     </Application.Resources>
 </Application>

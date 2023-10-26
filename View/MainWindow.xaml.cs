@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using CoinTrack.ViewModel;
+using static System.Windows.WindowState;
 
 namespace CoinTrack.View
 {
@@ -12,10 +13,18 @@ namespace CoinTrack.View
         {
             InitializeComponent();
 
-            var vm = new MainViewModel();
-            
-            DataContext = vm;
-            vm.FetchData.Execute(this);
+            // Fixing maximized window overlapping the taskbar
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 2;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+            Minimize.Click += delegate { WindowState = Minimized; };
+            Maximize.Click += delegate { WindowState = WindowState == Maximized ? Normal : Maximized; };
+            CloseWindow.Click += delegate { Close(); };
+
+            var context = new MainViewModel();
+
+            DataContext = context;
+            context.FetchData.Execute(this);
         }
     }
 }

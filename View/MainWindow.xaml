@@ -9,11 +9,18 @@
         mc:Ignorable="d"
         Title="CoinTrack"
         CacheMode="BitmapCache"
-        Width="1280"
-        Height="720"
-        MinWidth="960"
-        MinHeight="720"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Width="1280" Height="720"
+        MinWidth="960" MinHeight="720"
         Background="White">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="30"
+            ResizeBorderThickness="6"
+            GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
 
     <Window.DataContext>
         <vm:MainViewModel />
@@ -28,7 +35,37 @@
         <c:PercentToColorConverter x:Key="PercentToColor" />
     </Window.Resources>
 
-    <DockPanel>
+    <DockPanel> <!--Root-container-->
+
+        <DockPanel.Style>
+            <Style>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                        Value="Maximized">
+                        <Setter Property="Control.Margin" Value="7" /> <!--Fixing fullscreen size-->
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </DockPanel.Style>
+
+        <Grid DockPanel.Dock="Top">
+            <TextBlock
+                Text="CoinTrack" Margin="10 0" Foreground="#3c3c3c"
+                VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <StackPanel
+                WindowChrome.IsHitTestVisibleInChrome="True"
+                Height="30"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+
+                <Button Name="Minimize" Style="{StaticResource TitleBarButton}" Content="&#xE949;" />
+                <Button Name="Maximize" Style="{StaticResource MaximizeButton}" />
+                <Button Name="CloseWindow" Style="{StaticResource CloseButton}" Content="&#xE8BB;" />
+            </StackPanel>
+        </Grid>
+
         <Grid DockPanel.Dock="Top">
             <Button Command="{Binding FetchData}" Height="30" Width="150">Fetch data</Button>
         </Grid>
