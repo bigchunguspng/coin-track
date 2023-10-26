@@ -73,6 +73,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
+
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Page.Title}" Padding="10" />
                         <Button
@@ -83,7 +84,13 @@
                             Width="24" Height="24"
                             VerticalContentAlignment="Center"
                             HorizontalContentAlignment="Center" />
+                        <StackPanel.InputBindings>
+                            <MouseBinding
+                                Command="{Binding CloseTab}"
+                                MouseAction="MiddleClick" />
+                        </StackPanel.InputBindings>
                     </StackPanel>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.ItemsPanel>
