@@ -12,7 +12,7 @@
     <Page.DataContext>
         <vm:TopCurrenciesViewModel />
     </Page.DataContext>
-    
+
     <Page.Resources>
         <c:ActualWidthFixConverter x:Key="ActualWidthFix" />
         <c:PercentToColorConverter x:Key="PercentToColor" />
@@ -20,9 +20,9 @@
 
     <DockPanel>
 
-        <Grid DockPanel.Dock="Top">
+        <!--<Grid DockPanel.Dock="Top">
             <Button Command="{Binding FetchData}" Height="30" Width="150">Fetch data</Button>
-        </Grid>
+        </Grid>-->
 
         <DockPanel>
 
@@ -108,7 +108,7 @@
                                             FontWeight="Bold" FontSize="14" />
                                         <TextBlock
                                             Text="{Binding Symbol}"
-                                            Padding="8 0"
+                                            Padding="8 0" FontSize="12"
                                             VerticalAlignment="Center"
                                             Foreground="#64748b" />
                                     </StackPanel>

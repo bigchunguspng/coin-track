@@ -46,6 +46,8 @@
             </Style>
         </DockPanel.Style>
 
+        <!--Title bar-->
+
         <Grid DockPanel.Dock="Top" Background="{StaticResource LightGreen}">
             <TextBlock
                 Text="CoinTrack" Margin="10 0" Foreground="#3c3c3c"
@@ -63,31 +65,29 @@
             </StackPanel>
         </Grid>
 
+        <!--Tabs-->
+
         <ListView
             DockPanel.Dock="Top"
             ItemsSource="{Binding TabBar.Tabs}"
             SelectedItem="{Binding TabBar.ActiveTab}"
+            ItemContainerStyle="{StaticResource Tab}"
             BorderThickness="0 0 0 2" BorderBrush="#B4E29C"
-            Margin="0 0 0 5"
+            Margin="0 0 0 5" Padding="-1"
             Background="{StaticResource LightGreen}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Page.Title}" Padding="10" />
+                        <TextBlock
+                            Text="{Binding Page.Title}" Padding="10" />
                         <Button
                             Command="{Binding CloseTab}"
-                            Style="{StaticResource Plain}"
                             Content="×"
-                            VerticalAlignment="Center"
-                            Width="24" Height="24"
-                            VerticalContentAlignment="Center"
-                            HorizontalContentAlignment="Center" />
+                            Style="{StaticResource TabClose}" />
                         <StackPanel.InputBindings>
-                            <MouseBinding
-                                Command="{Binding CloseTab}"
-                                MouseAction="MiddleClick" />
+                            <MouseBinding Command="{Binding CloseTab}" MouseAction="MiddleClick" />
                         </StackPanel.InputBindings>
                     </StackPanel>
 
