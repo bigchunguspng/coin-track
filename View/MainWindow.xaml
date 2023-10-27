@@ -26,6 +26,7 @@
     </WindowChrome.WindowChrome>
 
     <Window.Resources>
+        <Style TargetType="ContentControl" BasedOn="{StaticResource Plain}" />
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#212529" />
         </Style>
