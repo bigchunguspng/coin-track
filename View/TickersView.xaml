@@ -11,7 +11,7 @@
     <UserControl.DataContext>
         <vm:TickersViewModel />
     </UserControl.DataContext>
-    
+
     <UserControl.Resources>
         <c:PriceToStringConverter x:Key="PriceToString" />
     </UserControl.Resources>
@@ -62,7 +62,7 @@
                                     <Setter Property="Foreground" Value="#212529" />
                                 </Style>
                             </Grid.Resources>
-                            
+
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Image
                                     Source="{Binding Ticker.Market.Logo}"
@@ -76,9 +76,17 @@
                                     FontSize="14" FontWeight="Bold" />
                             </StackPanel>
 
-                            <TextBlock
-                                Grid.Column="1"
-                                Text="{Binding Pair}" /> <!--todo hyperlink-->
+                            <TextBlock Grid.Column="1">
+                                <Hyperlink
+                                    Foreground="#64748b"
+                                    NavigateUri="{Binding Ticker.TradeURL}"
+                                    RequestNavigate="Hyperlink_RequestNavigate">
+                                    <TextBlock
+                                        Text="{Binding Pair}"
+                                        Foreground="#64748b" />
+                                </Hyperlink>
+                            </TextBlock>
+
                             <TextBlock
                                 Grid.Column="2"
                                 Text="{Binding LastPriceUSD, Converter={StaticResource PriceToString}}"

@@ -16,7 +16,7 @@ public class CoinGeckoApiClient
     private const string TopCoins = CoinsVsUsd6D + "&price_change_percentage=1h,24h,7d&per_page={0}";
     private const string CoinById = CoinsVsUsd6D + "&price_change_percentage=1h,24h,7d,14d,30d,1y&ids={0}";
 
-    private const string TickersById = BaseUrl + "coins/{0}/tickers?include_exchange_logo=true";
+    private const string TickersById = BaseUrl + "coins/{0}/tickers?include_exchange_logo=true&order=volume_desc";
 
     private readonly HttpClient _client = new()
     {
