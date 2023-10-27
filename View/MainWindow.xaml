@@ -73,7 +73,7 @@
             SelectedItem="{Binding TabBar.ActiveTab}"
             ItemContainerStyle="{StaticResource Tab}"
             BorderThickness="0 0 0 2" BorderBrush="#B4E29C"
-            Margin="0 0 0 5" Padding="-1"
+            Margin="0" Padding="-1"
             Background="{StaticResource LightGreen}">
 
             <ListView.ItemTemplate>
