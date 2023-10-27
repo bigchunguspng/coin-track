@@ -20,7 +20,7 @@
         <c:PriceToStringConverter x:Key="PriceToString" />
     </Page.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Style="{StaticResource Plain}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

@@ -102,7 +102,9 @@
             </ListView.ItemsPanel>
         </ListView>
 
-        <Frame Content="{Binding TabBar.ActiveTab.Page}" NavigationUIVisibility="Hidden" />
+        <Frame 
+            NavigationUIVisibility="Hidden"
+            Content="{Binding TabBar.ActiveTab.Page}" />
 
     </DockPanel>
 
