@@ -1,10 +1,11 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using CoinTrack.Helpers;
 
-namespace CoinTrack.View;
+namespace CoinTrack.ViewModel;
 
 public class TabPage
 {
@@ -51,7 +52,7 @@ public class TabBar : NotifyPropertyChanged
     }
 
     public RelayCommand TabSwitchLeft { get; set; }
-    
+
     public RelayCommand TabSwitchRight { get; set; }
 
     public void NewTab(Page page)
@@ -77,19 +78,14 @@ public class TabBar : NotifyPropertyChanged
 
         Tabs.Remove(tab);
 
-        if (active != closed) return;
-
         if (Tabs.Count == 0)
         {
             Application.Current.MainWindow!.Close();
         }
-        else if (active > 0)
+        else if (active == closed)
         {
-            ActiveTab = Tabs[--active];
-        }
-        else
-        {
-            ActiveTab = Tabs[++active];
+            var index = Math.Clamp(active, 0, Tabs.Count - 1);
+            ActiveTab = Tabs[index];
         }
     }
 }
