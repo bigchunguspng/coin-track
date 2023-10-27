@@ -112,4 +112,9 @@
             Command="{Binding TabBar.TabSwitchRight}"
             Modifiers="Alt" Key="PageDown" />
     </Window.InputBindings>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Command="{Binding OpenMainPage}" Header="Open main page" />
+        </ContextMenu>
+    </Window.ContextMenu>
 </Window>
