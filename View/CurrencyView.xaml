@@ -24,9 +24,11 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="920" />
+                <ColumnDefinition Width="600" />
+                <ColumnDefinition Width="320" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
             <StackPanel Grid.Column="1" Margin="0 25">
 
                 <!--Rank-->
@@ -183,6 +185,12 @@
                 </DockPanel>
 
             </StackPanel>
+
+            <Frame
+                Grid.Column="2"
+                NavigationUIVisibility="Hidden"
+                Content="{Binding Tickers}" />
+
         </Grid>
     </ScrollViewer>
 </Page>

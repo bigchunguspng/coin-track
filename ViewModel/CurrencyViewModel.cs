@@ -1,8 +1,10 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CoinTrack.Helpers;
 using CoinTrack.Model;
 using CoinTrack.Services;
+using CoinTrack.View;
 
 namespace CoinTrack.ViewModel;
 
@@ -14,6 +16,11 @@ public class CurrencyViewModel : NotifyPropertyChanged
     public CurrencyViewModel()
     {
         Currency = new CoinGeckoApiClient().GetCurrencyDetails(TempId).Result;
+
+        var list = new CoinGeckoApiClient().GetCurrencyTickers(Currency.Id).Result;
+        var tickers = list.Where(x => x.Base.ToLower().Contains(Currency.Symbol) && x.Target.Length < 10);
+
+        Tickers = new Tickers() { DataContext = new TickersViewModel() { Tickers = new(tickers) } };
 
         Indicators = new ObservableCollection<IndicatorValue<string>>()
         {
@@ -37,6 +44,8 @@ public class CurrencyViewModel : NotifyPropertyChanged
     }
 
     public CurrencyDetails Currency { get; set; }
+
+    public Tickers Tickers { get; set; }
 
     public string Symbol => Currency.Symbol.ToUpper();
 
