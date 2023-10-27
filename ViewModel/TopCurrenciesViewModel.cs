@@ -1,13 +1,13 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using CoinTrack.Helpers;
-using CoinTrack.Model;
+using CoinTrack.Services;
 
 namespace CoinTrack.ViewModel;
 
 public class TopCurrenciesViewModel : NotifyPropertyChanged
 {
-    private TopCurrencies Currencies { get; } = new();
+    private CoinGeckoApiClient ApiClient { get; } = new();
 
     private ObservableCollection<CurrencySummaryViewModel> _coins = null!;
 
@@ -23,7 +23,7 @@ public class TopCurrenciesViewModel : NotifyPropertyChanged
     {
         FetchData = new RelayCommand((_) =>
         {
-            Coins = new(Currencies.FetchData().Result.Select(x => new CurrencySummaryViewModel(x)));
+            Coins = new(ApiClient.GetTopCurrencies().Result.Select(x => new CurrencySummaryViewModel(x)));
         });
     }
 }

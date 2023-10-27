@@ -1,7 +1,6 @@
 using CoinTrack.Helpers;
 using CoinTrack.Model;
 using CoinTrack.View;
-using Newtonsoft.Json;
 using Formatting = CoinTrack.Helpers.Formatting;
 
 namespace CoinTrack.ViewModel;
@@ -14,11 +13,7 @@ public class CurrencySummaryViewModel
 
         OpenAsNewPage = new RelayCommand((_) =>
         {
-            // create page for this currency
-            var serializedParent = JsonConvert.SerializeObject(Currency); 
-            var details = JsonConvert.DeserializeObject<CurrencyDetails>(serializedParent)!;
-
-            CurrencyViewModel.Temp = details;
+            CurrencyViewModel.TempId = Currency.Id;
             MainViewModel.Instance.TabBar.NewTab(new CurrencyView());
         });
     }

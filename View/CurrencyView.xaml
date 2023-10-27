@@ -15,5 +15,11 @@
     <StackPanel>
         <TextBlock Text="{Binding Currency.Name}"></TextBlock>
         <TextBlock Text="{Binding Currency.Symbol}"></TextBlock>
+        <TextBlock Text="{Binding Currency.CurrentPrice}"></TextBlock>
+        <TextBlock Text="{Binding Currency.MarketCap}"></TextBlock>
+        <TextBlock Text="{Binding Currency.Volume24H}"></TextBlock>
+        <TextBlock Text="{Binding Currency.VolumeToMarketCap}"></TextBlock>
+        <TextBlock Text="{Binding Currency.CirculatingSupply}"></TextBlock>
+        <TextBlock Text="{Binding Currency.MaxSupply}"></TextBlock>
     </StackPanel>
 </Page>
