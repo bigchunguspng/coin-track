@@ -99,7 +99,7 @@
 
                 <ListView
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                    ItemsSource="{Binding Summary}"
+                    ItemsSource="{Binding Indicators}"
                     ItemContainerStyle="{StaticResource Coins}"
                     Focusable="False"
                     MaxHeight="140"
@@ -135,6 +135,52 @@
                         </ControlTemplate>
                     </ListView.Template>
                 </ListView>
+
+                <!--Price changes-->
+
+                <DockPanel LastChildFill="True">
+                    <ListView
+                        Margin="0 25"
+                        ItemsSource="{Binding PriceChanges}"
+                        ItemContainerStyle="{StaticResource ControlBase}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Width="100">
+                                    <Border
+                                        DockPanel.Dock="Top"
+                                        Background="#f1f5f9"
+                                        BorderBrush="#E3E7EB"
+                                        BorderThickness="1 1 0 1">
+                                        <TextBlock
+                                            Text="{Binding Indicator}"
+                                            Padding="0 8"
+                                            HorizontalAlignment="Center" />
+                                    </Border>
+                                    <Border
+                                        BorderBrush="#E3E7EB"
+                                        BorderThickness="1 0 0 1">
+                                        <TextBlock
+                                            Text="{Binding Value, Converter={StaticResource PercentToString}}"
+                                            Padding="0 8"
+                                            HorizontalAlignment="Center"
+                                            Foreground="{Binding Value, Converter={StaticResource PercentToColor}}" />
+                                    </Border>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter /> <!--Enables wheel-scrolling over listview-->
+                            </ControlTemplate>
+                        </ListView.Template>
+                    </ListView>
+                    <Border DockPanel.Dock="Right" Margin="0 25" BorderThickness="1 0 0 0" BorderBrush="#E3E7EB" />
+                </DockPanel>
 
             </StackPanel>
         </Grid>

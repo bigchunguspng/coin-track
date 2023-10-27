@@ -15,7 +15,7 @@ public class CurrencyViewModel : NotifyPropertyChanged
     {
         Currency = new CoinGeckoApiClient().GetCurrencyDetails(TempId).Result;
 
-        Summary = new ObservableCollection<IndicatorValue>()
+        Indicators = new ObservableCollection<IndicatorValue<string>>()
         {
             new("Market Cap", $"${Currency.MarketCap:N0}"),
             new("Trading Volume", $"${Currency.Volume24H:N0}"),
@@ -23,6 +23,16 @@ public class CurrencyViewModel : NotifyPropertyChanged
             new("Circulating Supply ", $"{Currency.CirculatingSupply:N0}"),
             new("Total Supply ", $"{Currency.TotalSupply:N0}"),
             new("Max Supply ", Currency.MaxSupply is null ? "∞" : $"{Currency.MaxSupply:N0}")
+        };
+
+        PriceChanges = new ObservableCollection<IndicatorValue<decimal>>()
+        {
+            new("1h", Currency.PriceChangePercentage1H),
+            new("24h", Currency.PriceChangePercentage24H),
+            new("7d", Currency.PriceChangePercentage7D),
+            new("14d", Currency.PriceChangePercentage14D),
+            new("30d", Currency.PriceChangePercentage30D),
+            new("1y", Currency.PriceChangePercentage1Y)
         };
     }
 
@@ -46,7 +56,9 @@ public class CurrencyViewModel : NotifyPropertyChanged
         return $"${price:N2}";
     }
 
-    public ObservableCollection<IndicatorValue> Summary { get; }
+    public ObservableCollection<IndicatorValue<string>> Indicators { get; }
 
-    public record IndicatorValue(string Indicator, string Value);
+    public ObservableCollection<IndicatorValue<decimal>> PriceChanges { get; }
+
+    public record IndicatorValue<T>(string Indicator, T Value);
 }
