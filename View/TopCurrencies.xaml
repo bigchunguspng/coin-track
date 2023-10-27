@@ -112,18 +112,19 @@
                                                 Command="{Binding OpenAsNewPage}"
                                                 Style="{StaticResource HrefButton}"
                                                 HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
                                                 HorizontalContentAlignment="Left"
                                                 Width="240">
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock
                                                         Text="{Binding Currency.Name}"
-                                                        VerticalAlignment="Center"
+                                                        VerticalAlignment="Bottom"
                                                         Foreground="#333333"
                                                         FontWeight="Bold" />
                                                     <TextBlock
                                                         Text="{Binding Symbol}"
                                                         Padding="8 0" FontSize="12"
-                                                        VerticalAlignment="Center"
+                                                        VerticalAlignment="Bottom"
                                                         Foreground="#64748b" />
                                                 </StackPanel>
                                             </Button>
