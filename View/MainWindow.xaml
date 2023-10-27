@@ -111,10 +111,16 @@
         <KeyBinding
             Command="{Binding TabBar.TabSwitchRight}"
             Modifiers="Alt" Key="PageDown" />
+        <KeyBinding
+            Command="{Binding TabBar.CloseActiveTab}"
+            Modifiers="Control" Key="W" />
+        <KeyBinding
+            Command="{Binding OpenMainPage}"
+            Modifiers="Control" Key="M" />
     </Window.InputBindings>
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Command="{Binding OpenMainPage}" Header="Open main page" />
+            <MenuItem Command="{Binding OpenMainPage}" Header="Open main page" InputGestureText="Ctrl+M" />
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

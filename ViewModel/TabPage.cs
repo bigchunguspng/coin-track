@@ -41,6 +41,7 @@ public class TabBar : NotifyPropertyChanged
             var count = Tabs.Count;
             ActiveTab = Tabs[(Tabs.IndexOf(ActiveTab) + count + 1) % count];
         });
+        CloseActiveTab = new RelayCommand(_ => CloseTab(ActiveTab));
     }
 
     public ObservableCollection<TabPage> Tabs { get; set; }
@@ -54,6 +55,8 @@ public class TabBar : NotifyPropertyChanged
     public RelayCommand TabSwitchLeft { get; set; }
 
     public RelayCommand TabSwitchRight { get; set; }
+    
+    public RelayCommand CloseActiveTab { get; set; }
 
     public void NewTab(Page page)
     {
