@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace CoinTrack.Model;
@@ -14,11 +15,11 @@ public class Ticker
     public Market Market { get; set; } = null!;
 
 
-    [JsonProperty("last")]
-    public decimal LastPrice { get; set; }
+    [JsonProperty("converted_last")]
+    public Dictionary<string, decimal> LastPriceConverted { get; set; } = null!;
 
-    [JsonProperty("volume")]
-    public decimal Volume { get; set; }
+    [JsonProperty("converted_volume")]
+    public Dictionary<string, decimal> VolumeConverted { get; set; } = null!;
 
 
     [JsonProperty("trade_url")]

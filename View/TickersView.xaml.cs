@@ -2,9 +2,9 @@ using System.Windows.Controls;
 
 namespace CoinTrack.View;
 
-public partial class Tickers : UserControl
+public partial class TickersView : UserControl
 {
-    public Tickers()
+    public TickersView()
     {
         InitializeComponent();
     }

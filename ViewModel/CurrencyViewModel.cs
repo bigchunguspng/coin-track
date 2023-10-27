@@ -18,9 +18,9 @@ public class CurrencyViewModel : NotifyPropertyChanged
         Currency = new CoinGeckoApiClient().GetCurrencyDetails(TempId).Result;
 
         var list = new CoinGeckoApiClient().GetCurrencyTickers(Currency.Id).Result;
-        var tickers = list.Where(x => x.Base.ToLower().Contains(Currency.Symbol) && x.Target.Length < 10);
+        var tickers = list.Where(x => x.Target.Length < 10).Select(x => new TickerViewModel(x));
 
-        Tickers = new Tickers() { DataContext = new TickersViewModel() { Tickers = new(tickers) } };
+        Tickers = new TickersView() { DataContext = new TickersViewModel() { Tickers = new(tickers) } };
 
         Indicators = new ObservableCollection<IndicatorValue<string>>()
         {
@@ -45,7 +45,7 @@ public class CurrencyViewModel : NotifyPropertyChanged
 
     public CurrencyDetails Currency { get; set; }
 
-    public Tickers Tickers { get; set; }
+    public TickersView Tickers { get; set; }
 
     public string Symbol => Currency.Symbol.ToUpper();
 

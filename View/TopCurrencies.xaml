@@ -94,7 +94,7 @@
                                         </Grid.Width>
                                         <Grid.Resources>
                                             <Style TargetType="TextBlock">
-                                                <Setter Property="FontSize" Value="13.2" />
+                                                <Setter Property="FontSize" Value="13.3" />
                                                 <Setter Property="Foreground" Value="#212529" />
                                             </Style>
                                         </Grid.Resources>

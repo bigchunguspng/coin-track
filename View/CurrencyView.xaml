@@ -24,11 +24,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="600" />
-                <ColumnDefinition Width="320" />
+                <ColumnDefinition Width="920" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <StackPanel Grid.Column="1" Margin="0 25">
 
                 <!--Rank-->
@@ -55,7 +53,8 @@
                         Text="{Binding Currency.Name}"
                         FontSize="18" FontWeight="Bold"
                         VerticalAlignment="Center"
-                        Margin="8 0" />
+                        Margin="8 0"
+                        Foreground="#0f172a" />
                     <TextBlock
                         Text="{Binding Symbol}"
                         VerticalAlignment="Center"
@@ -68,7 +67,8 @@
                 <StackPanel Orientation="Horizontal" Margin="0 8">
                     <TextBlock
                         Text="{Binding Currency.Price, Converter={StaticResource PriceToString}}"
-                        FontSize="30" FontWeight="Bold" />
+                        FontSize="30" FontWeight="Bold"
+                        Foreground="#0f172a" />
                     <TextBlock
                         Text="{Binding Currency.PriceChangePercentage24H, Converter={StaticResource PercentToArrow}}"
                         FontSize="20" FontWeight="SemiBold"
@@ -184,13 +184,20 @@
                     <Border DockPanel.Dock="Right" Margin="0 25" BorderThickness="1 0 0 0" BorderBrush="#E3E7EB" />
                 </DockPanel>
 
+                <!--Tickers-->
+
+                <TextBlock
+                    DockPanel.Dock="Top"
+                    Text="{Binding Currency.Name, StringFormat={}{0} Markets}"
+                    FontSize="24" FontWeight="SemiBold"
+                    Margin="0 20 0 0"
+                    Foreground="#0f172a" />
+                <Frame
+                    DockPanel.Dock="Top"
+                    NavigationUIVisibility="Hidden"
+                    Content="{Binding Tickers}" />
+
             </StackPanel>
-
-            <Frame
-                Grid.Column="2"
-                NavigationUIVisibility="Hidden"
-                Content="{Binding Tickers}" />
-
         </Grid>
     </ScrollViewer>
 </Page>
