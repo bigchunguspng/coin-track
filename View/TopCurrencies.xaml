@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="920" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" Margin="0 10 0 0">
 
                     <!--Headers-->
 
@@ -73,88 +73,90 @@
                         ItemContainerStyle="{StaticResource Coins}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid
-                                    MinWidth="900" Margin="0 4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="35" />
-                                        <ColumnDefinition Width="280" />
-                                        <ColumnDefinition Width="95" />
-                                        <ColumnDefinition Width="70" />
-                                        <ColumnDefinition Width="70" />
-                                        <ColumnDefinition Width="70" />
-                                        <ColumnDefinition Width="140" />
-                                        <ColumnDefinition Width="140" /> <!--Total: 900-->
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.Width>
-                                        <Binding
-                                            ElementName="Headers"
-                                            Path="ActualWidth"
-                                            Converter="{StaticResource ActualWidthFix}" />
-                                    </Grid.Width>
-                                    <Grid.Resources>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="FontSize" Value="13.2" />
-                                            <Setter Property="Foreground" Value="#212529" />
-                                        </Style>
-                                    </Grid.Resources>
+                                <Border BorderThickness="0 0 0 1" BorderBrush="#ECEFF2">
+                                    <Grid
+                                        MinWidth="900" Margin="0 10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="35" />
+                                            <ColumnDefinition Width="280" />
+                                            <ColumnDefinition Width="95" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="140" /> <!--Total: 900-->
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.Width>
+                                            <Binding
+                                                ElementName="Headers"
+                                                Path="ActualWidth"
+                                                Converter="{StaticResource ActualWidthFix}" />
+                                        </Grid.Width>
+                                        <Grid.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontSize" Value="13.2" />
+                                                <Setter Property="Foreground" Value="#212529" />
+                                            </Style>
+                                        </Grid.Resources>
 
-                                    <TextBlock
-                                        Grid.Column="0"
-                                        Text="{Binding Currency.Rank}"
-                                        HorizontalAlignment="Center" />
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <Image
-                                            Source="{Binding Currency.Image}"
-                                            Width="20" Height="20" Margin="0 0 8 0"
-                                            RenderOptions.BitmapScalingMode="HighQuality" />
-                                        <Button
-                                            Command="{Binding OpenAsNewPage}"
-                                            Style="{StaticResource HrefButton}"
-                                            HorizontalAlignment="Left"
-                                            HorizontalContentAlignment="Left"
-                                            Width="240">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock
-                                                    Text="{Binding Currency.Name}"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="#333333"
-                                                    FontWeight="Bold" />
-                                                <TextBlock
-                                                    Text="{Binding Symbol}"
-                                                    Padding="8 0" FontSize="12"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="#64748b" />
-                                            </StackPanel>
-                                        </Button>
-                                    </StackPanel>
-                                    <TextBlock
-                                        Grid.Column="2"
-                                        Text="{Binding Path=Currency.Price, Converter={StaticResource PriceToString}}"
-                                        HorizontalAlignment="Right" />
-                                    <TextBlock
-                                        Grid.Column="3"
-                                        Text="{Binding Path=Currency.PriceChangePercentage1H, Converter={StaticResource PercentToString}}"
-                                        HorizontalAlignment="Right"
-                                        Foreground="{Binding Path=Currency.PriceChangePercentage1H, Converter={StaticResource PercentToColor}}" />
-                                    <TextBlock
-                                        Grid.Column="4"
-                                        Text="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToString}}"
-                                        HorizontalAlignment="Right"
-                                        Foreground="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToColor}}" />
-                                    <TextBlock
-                                        Grid.Column="5"
-                                        Text="{Binding Path=Currency.PriceChangePercentage7D, Converter={StaticResource PercentToString}}"
-                                        HorizontalAlignment="Right"
-                                        Foreground="{Binding Path=Currency.PriceChangePercentage7D, Converter={StaticResource PercentToColor}}" />
-                                    <TextBlock
-                                        Grid.Column="6"
-                                        Text="{Binding Path=Currency.Volume24H, StringFormat=${0:N0}}"
-                                        HorizontalAlignment="Right" />
-                                    <TextBlock
-                                        Grid.Column="7"
-                                        Text="{Binding Path=Currency.MarketCap, StringFormat=${0:N0}}"
-                                        HorizontalAlignment="Right" />
-                                </Grid>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Text="{Binding Currency.Rank}"
+                                            HorizontalAlignment="Center" />
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <Image
+                                                Source="{Binding Currency.Image}"
+                                                Width="20" Height="20" Margin="0 0 8 0"
+                                                RenderOptions.BitmapScalingMode="HighQuality" />
+                                            <Button
+                                                Command="{Binding OpenAsNewPage}"
+                                                Style="{StaticResource HrefButton}"
+                                                HorizontalAlignment="Left"
+                                                HorizontalContentAlignment="Left"
+                                                Width="240">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Text="{Binding Currency.Name}"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="#333333"
+                                                        FontWeight="Bold" />
+                                                    <TextBlock
+                                                        Text="{Binding Symbol}"
+                                                        Padding="8 0" FontSize="12"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="#64748b" />
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            Text="{Binding Path=Currency.Price, Converter={StaticResource PriceToString}}"
+                                            HorizontalAlignment="Right" />
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            Text="{Binding Path=Currency.PriceChangePercentage1H, Converter={StaticResource PercentToString}}"
+                                            HorizontalAlignment="Right"
+                                            Foreground="{Binding Path=Currency.PriceChangePercentage1H, Converter={StaticResource PercentToColor}}" />
+                                        <TextBlock
+                                            Grid.Column="4"
+                                            Text="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToString}}"
+                                            HorizontalAlignment="Right"
+                                            Foreground="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToColor}}" />
+                                        <TextBlock
+                                            Grid.Column="5"
+                                            Text="{Binding Path=Currency.PriceChangePercentage7D, Converter={StaticResource PercentToString}}"
+                                            HorizontalAlignment="Right"
+                                            Foreground="{Binding Path=Currency.PriceChangePercentage7D, Converter={StaticResource PercentToColor}}" />
+                                        <TextBlock
+                                            Grid.Column="6"
+                                            Text="{Binding Path=Currency.Volume24H, StringFormat=${0:N0}}"
+                                            HorizontalAlignment="Right" />
+                                        <TextBlock
+                                            Grid.Column="7"
+                                            Text="{Binding Path=Currency.MarketCap, StringFormat=${0:N0}}"
+                                            HorizontalAlignment="Right" />
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.Template>
@@ -163,6 +165,18 @@
                             </ControlTemplate>
                         </ListView.Template>
                     </ListView>
+
+                    <StackPanel HorizontalAlignment="Right" Margin="15">
+                        <TextBlock Foreground="#64748b">
+                            Powered by
+                            <Hyperlink
+                                Foreground="#4DB860"
+                                NavigateUri="https://www.coingecko.com/en/api"
+                                RequestNavigate="Hyperlink_RequestNavigate">
+                                CoinGecko
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
 
                 </StackPanel>
             </Grid>
