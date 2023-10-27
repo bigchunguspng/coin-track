@@ -20,7 +20,7 @@ public class CurrencySummary
 
     /// <summary> Price in USD. </summary>
     [JsonProperty("current_price")]
-    public decimal CurrentPrice { get; set; }
+    public decimal Price { get; set; }
 
     [JsonProperty("market_cap")]
     public long MarketCap { get; set; }

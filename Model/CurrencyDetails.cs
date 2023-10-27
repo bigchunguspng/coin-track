@@ -28,5 +28,12 @@ public class CurrencyDetails : CurrencySummary
     public decimal PriceChangePercentage1Y { get; set; }
 
 
+    [JsonProperty("high_24h")]
+    public decimal High24H { get; set; }
+
+    [JsonProperty("low_24h")]
+    public decimal Low24H { get; set; }
+
+
     // todo ath/l (price, %, date)
 }

@@ -4,22 +4,118 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:CoinTrack.View"
+      xmlns:c="clr-namespace:CoinTrack.Converters"
       xmlns:vm="clr-namespace:CoinTrack.ViewModel"
       mc:Ignorable="d"
-      Title="{Binding Currency.Name}" Height="450" Width="800">
-    
+      Width="920"
+      Title="{Binding Currency.Name}">
+
     <Page.DataContext>
-        <vm:CurrencyViewModel/>
+        <vm:CurrencyViewModel />
     </Page.DataContext>
 
-    <StackPanel>
-        <TextBlock Text="{Binding Currency.Name}"></TextBlock>
-        <TextBlock Text="{Binding Currency.Symbol}"></TextBlock>
-        <TextBlock Text="{Binding Currency.CurrentPrice}"></TextBlock>
-        <TextBlock Text="{Binding Currency.MarketCap}"></TextBlock>
-        <TextBlock Text="{Binding Currency.Volume24H}"></TextBlock>
-        <TextBlock Text="{Binding Currency.VolumeToMarketCap}"></TextBlock>
-        <TextBlock Text="{Binding Currency.CirculatingSupply}"></TextBlock>
-        <TextBlock Text="{Binding Currency.MaxSupply}"></TextBlock>
+    <Page.Resources>
+        <c:PercentToColorConverter x:Key="PercentToColor" />
+        <c:PercentToStringConverter x:Key="PercentToString" />
+        <c:PercentToArrowConverter x:Key="PercentToArrow" />
+        <c:PriceToStringConverter x:Key="PriceToString" />
+    </Page.Resources>
+
+    <StackPanel Margin="0 25">
+
+        <DockPanel LastChildFill="False">
+            <Border Background="#1e293b" CornerRadius="5" Margin="0 0 0 20">
+                <TextBlock
+                    Text="{Binding Currency.Rank, StringFormat=Rank #{0}}"
+                    FontWeight="SemiBold"
+                    Padding="8 2"
+                    Foreground="#f1f5f9" />
+            </Border>
+        </DockPanel>
+
+        <DockPanel Margin="0 8 0 0">
+            <Image
+                Width="28" Height="28"
+                Source="{Binding Currency.Image}"
+                VerticalAlignment="Center"
+                RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock
+                Text="{Binding Currency.Name}"
+                FontSize="18" FontWeight="Bold"
+                VerticalAlignment="Center"
+                Margin="8 0" />
+            <TextBlock
+                Text="{Binding Symbol}"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Foreground="#64748b" />
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0 8">
+            <TextBlock
+                Text="{Binding Currency.Price, Converter={StaticResource PriceToString}}"
+                FontSize="30" FontWeight="Bold" />
+            <TextBlock
+                Text="{Binding Currency.PriceChangePercentage24H, Converter={StaticResource PercentToArrow}}"
+                FontSize="20" FontWeight="SemiBold"
+                Margin="8 0 0 0"
+                VerticalAlignment="Center"
+                Foreground="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToColor}}" />
+        </StackPanel>
+
+        <DockPanel Width="300" HorizontalAlignment="Left" Margin="0 0 0 30">
+            <ProgressBar
+                DockPanel.Dock="Top"
+                Minimum="{Binding Currency.Low24H}"
+                Maximum="{Binding Currency.High24H}"
+                Value="{Binding Currency.Price}"
+                Height="9"
+                Margin="0 12 0 8"
+                BorderThickness="0"
+                Foreground="#4DB860" Background="#f1f5f9" />
+            <TextBlock
+                DockPanel.Dock="Left"
+                Text="{Binding Low24H}" />
+            <TextBlock
+                DockPanel.Dock="Right"
+                Text="{Binding High24H}" />
+            <TextBlock
+                Text="24H Range" HorizontalAlignment="Center" />
+        </DockPanel>
+
+        <ListView
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            ItemsSource="{Binding Summary}"
+            ItemContainerStyle="{StaticResource Coins}"
+            Focusable="False"
+            MaxHeight="140"
+            Padding="-1"
+            BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="0 10" Width="300">
+                        <TextBlock
+                            DockPanel.Dock="Left"
+                            Text="{Binding Indicator}"
+                            FontSize="13"
+                            Padding="10 0"
+                            Foreground="#64748b" />
+                        <TextBlock
+                            DockPanel.Dock="Right"
+                            Text="{Binding Value}"
+                            FontSize="13"
+                            Padding="10 0"
+                            Foreground="#0f172a"
+                            HorizontalAlignment="Right" />
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
     </StackPanel>
 </Page>

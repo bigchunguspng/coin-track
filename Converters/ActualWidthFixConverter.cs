@@ -1,19 +1,9 @@
-using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-
 namespace CoinTrack.Converters;
 
-public class ActualWidthFixConverter : IValueConverter
+public class ActualWidthFixConverter : OneWayConverter<double>
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object Convert(double value)
     {
-        return (double)value - 2D;
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return DependencyProperty.UnsetValue;
+        return value - 2D;
     }
 }
