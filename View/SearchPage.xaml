@@ -9,7 +9,7 @@
       Title="Search"
       FocusManager.FocusedElement="{Binding ElementName=SearchBar}">
     <Page.DataContext>
-        <vm:SearchViewModel />
+        <vm:SearchPageViewModel />
     </Page.DataContext>
 
     <DockPanel>

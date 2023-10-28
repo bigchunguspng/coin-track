@@ -7,7 +7,7 @@ using CoinTrack.Services;
 
 namespace CoinTrack.ViewModel;
 
-public class SearchViewModel : NotifyPropertyChanged
+public class SearchPageViewModel : NotifyPropertyChanged
 {
     private string _searchText = string.Empty;
     private DateTime _lastType = DateTime.Now;
@@ -17,17 +17,14 @@ public class SearchViewModel : NotifyPropertyChanged
     public string? SearchText
     {
         get => string.IsNullOrWhiteSpace(_searchText) ? string.Empty : _searchText.ToUpper();
-        set
-        {
-            if (string.IsNullOrWhiteSpace(value)) return;
-
-            SetSearchText(value);
-        }
+        set => SetSearchText(value ?? string.Empty);
     }
 
     private async void SetSearchText(string value)
     {
         SetField(ref _searchText, value);
+        
+        if (string.IsNullOrWhiteSpace(value)) return;
 
         _lastType = DateTime.Now;
 
