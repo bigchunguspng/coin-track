@@ -60,7 +60,7 @@ public class TabBar : NotifyPropertyChanged
 
     public void NewTab(Page page)
     {
-        var equivalent = Tabs.FirstOrDefault(x => x.Page.Title == page.Title); // not working
+        var equivalent = Tabs.FirstOrDefault(x => x.Page.Title == page.Title);
         if (equivalent is not null)
         {
             ActiveTab = equivalent;

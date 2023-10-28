@@ -11,7 +11,7 @@ public partial class MainPage : Page
     {
         InitializeComponent();
 
-        var context = new MainPageViewModel();
+        var context = AppServices.Get<MainPageViewModel>();
 
         DataContext = context;
         context.FetchData.Execute(this);

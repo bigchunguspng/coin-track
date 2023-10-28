@@ -16,10 +16,8 @@ public class CurrencyPageViewModel : NotifyPropertyChanged
     /// </summary>
     public static CurrencyPageViewModel New(string id)
     {
-        var api = AppServices.Get<CoinGeckoApiClient>();
-        
-        var details = api.GetCurrencyDetails(id);
-        var markets = api.GetCurrencyTickers(id);
+        var details = AppServices.CoinsAPI.GetCurrencyDetails(id);
+        var markets = AppServices.CoinsAPI.GetCurrencyTickers(id);
 
         Task.WhenAll(details, markets).Wait();
 

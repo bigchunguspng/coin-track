@@ -1,5 +1,6 @@
 using CoinTrack.Helpers;
 using CoinTrack.Model;
+using CoinTrack.Services;
 using CoinTrack.View;
 
 namespace CoinTrack.ViewModel;
@@ -12,7 +13,7 @@ public class CurrencyViewModel
 
         OpenPage = new RelayCommand(_ =>
         {
-            MainWindowViewModel.Instance.TabBar.NewTab(new CurrencyPage(Currency));
+            AppServices.MainWindow.TabBar.NewTab(new CurrencyPage(Currency));
         });
     }
 
