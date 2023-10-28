@@ -14,6 +14,9 @@ public class Ticker
     public Market Exchange { get; set; } = null!;
 
 
+    public string Pair => $"{Base}/{Target}";
+
+
     [JsonIgnore]
     public decimal LastPrice { get; set; }
 

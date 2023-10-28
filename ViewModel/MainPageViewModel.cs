@@ -5,13 +5,13 @@ using CoinTrack.Services;
 
 namespace CoinTrack.ViewModel;
 
-public class TopCurrenciesViewModel : NotifyPropertyChanged
+public class MainPageViewModel : NotifyPropertyChanged
 {
     private CoinGeckoApiClient ApiClient { get; } = new();
 
-    private ObservableCollection<CurrencySummaryViewModel> _coins = null!;
+    private ObservableCollection<CurrencyViewModel> _coins = null!;
 
-    public ObservableCollection<CurrencySummaryViewModel> Coins
+    public ObservableCollection<CurrencyViewModel> Coins
     {
         get => _coins;
         set => SetField(ref _coins, value);
@@ -19,11 +19,11 @@ public class TopCurrenciesViewModel : NotifyPropertyChanged
 
     public RelayCommand FetchData { get; }
 
-    public TopCurrenciesViewModel()
+    public MainPageViewModel()
     {
         FetchData = new RelayCommand((_) =>
         {
-            Coins = new(ApiClient.GetTopCurrencies().Result.Select(x => new CurrencySummaryViewModel(x)));
+            Coins = new(ApiClient.GetTopCurrencies().Result.Select(x => new CurrencyViewModel(x)));
         });
     }
 }

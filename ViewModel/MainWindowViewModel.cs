@@ -5,11 +5,11 @@ using CoinTrack.View;
 
 namespace CoinTrack.ViewModel;
 
-public class MainViewModel : NotifyPropertyChanged
+public class MainWindowViewModel : NotifyPropertyChanged
 {
-    public MainViewModel()
+    public MainWindowViewModel()
     {
-        var mainPage = new TopCurrencies();
+        var mainPage = new MainPage();
 
         TabBar = new TabBar(new ObservableCollection<Page>() { mainPage });
 
@@ -19,7 +19,7 @@ public class MainViewModel : NotifyPropertyChanged
         Instance = this;
     }
 
-    public static MainViewModel Instance { get; private set; } = null!;
+    public static MainWindowViewModel Instance { get; private set; } = null!;
 
     public TabBar TabBar { get; }
 

@@ -15,7 +15,7 @@
         Background="White">
 
     <Window.DataContext>
-        <vm:MainViewModel />
+        <vm:MainWindowViewModel />
     </Window.DataContext>
 
     <WindowChrome.WindowChrome>

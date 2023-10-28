@@ -81,7 +81,6 @@
                                             RenderOptions.BitmapScalingMode="HighQuality" />
                                         <Button
                                             Command="{Binding OpenPage}"
-                                            CommandParameter="{Binding SearchResult.Id}"
                                             Style="{StaticResource HrefButton}"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"

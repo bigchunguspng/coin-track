@@ -9,10 +9,9 @@ public class SearchResultViewModel
     public SearchResultViewModel(CoinSearchResult searchResult)
     {
         SearchResult = searchResult;
-        OpenPage = new RelayCommand(id =>
+        OpenPage = new RelayCommand(_ =>
         {
-            CurrencyViewModel.TempId = (string)id!;
-            MainViewModel.Instance.TabBar.NewTab(new CurrencyView());
+            MainWindowViewModel.Instance.TabBar.NewTab(new CurrencyPage(searchResult));
         });
     }
 

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace CoinTrack.Model;
 
-public class CoinSearchResult
+public class CoinSearchResult : ICoinIdentity
 {
     [JsonProperty("id")]
     public string Id { get; set; } = null!;

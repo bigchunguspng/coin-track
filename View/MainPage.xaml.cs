@@ -5,13 +5,13 @@ using CoinTrack.ViewModel;
 
 namespace CoinTrack.View;
 
-public partial class TopCurrencies : Page
+public partial class MainPage : Page
 {
-    public TopCurrencies()
+    public MainPage()
     {
         InitializeComponent();
 
-        var context = new TopCurrenciesViewModel();
+        var context = new MainPageViewModel();
 
         DataContext = context;
         context.FetchData.Execute(this);
