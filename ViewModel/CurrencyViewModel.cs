@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using CoinTrack.Helpers;
 using CoinTrack.Model;
 using CoinTrack.Services;
@@ -48,6 +49,8 @@ public class CurrencyViewModel : NotifyPropertyChanged
     public TickersView Tickers { get; set; }
 
     public string Symbol => Currency.Symbol.ToUpper();
+
+    public Visibility HighLowVisibility => Currency.Low24H is null ? Visibility.Collapsed : Visibility.Visible;
 
     public string High24H => GetPriceString(Currency.High24H);
 

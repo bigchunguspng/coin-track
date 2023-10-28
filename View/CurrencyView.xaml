@@ -64,7 +64,7 @@
 
                 <!--Price-->
 
-                <StackPanel Orientation="Horizontal" Margin="0 8">
+                <StackPanel Orientation="Horizontal" Margin="0 8 0 0">
                     <TextBlock
                         Text="{Binding Currency.Price, Converter={StaticResource PriceToString}}"
                         FontSize="30" FontWeight="Bold"
@@ -77,14 +77,17 @@
                         Foreground="{Binding Path=Currency.PriceChangePercentage24H, Converter={StaticResource PercentToColor}}" />
                 </StackPanel>
 
-                <DockPanel Width="300" HorizontalAlignment="Left" Margin="0 0 0 30">
+                <DockPanel
+                    Visibility="{Binding HighLowVisibility}"
+                    Width="300"
+                    HorizontalAlignment="Left">
                     <ProgressBar
                         DockPanel.Dock="Top"
                         Minimum="{Binding Currency.Low24H}"
                         Maximum="{Binding Currency.High24H}"
                         Value="{Binding Currency.Price}"
                         Height="9"
-                        Margin="0 12 0 8"
+                        Margin="0 20 0 8"
                         BorderThickness="0"
                         Foreground="#4DB860" Background="#f1f5f9" />
                     <TextBlock
@@ -106,6 +109,7 @@
                     Focusable="False"
                     MaxHeight="140"
                     Padding="-1"
+                    Margin="0 30 0 0"
                     BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
