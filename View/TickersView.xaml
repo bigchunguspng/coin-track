@@ -76,7 +76,7 @@
                                     FontSize="14" FontWeight="Bold" />
                             </StackPanel>
 
-                            <TextBlock Grid.Column="1">
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center">
                                 <Hyperlink
                                     Foreground="#64748b"
                                     NavigateUri="{Binding Ticker.TradeURL}"
@@ -90,10 +90,12 @@
                             <TextBlock
                                 Grid.Column="2"
                                 Text="{Binding LastPriceUSD, Converter={StaticResource PriceToString}}"
+                                VerticalAlignment="Center"
                                 HorizontalAlignment="Right" />
                             <TextBlock
                                 Grid.Column="3"
                                 Text="{Binding VolumeUSD, StringFormat=${0:N0}}"
+                                VerticalAlignment="Center"
                                 HorizontalAlignment="Right" />
 
                         </Grid>
