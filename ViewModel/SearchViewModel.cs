@@ -9,12 +9,14 @@ namespace CoinTrack.ViewModel;
 
 public class SearchViewModel : NotifyPropertyChanged
 {
-    private DateTime _last = DateTime.Now;
+    private string _searchText = string.Empty;
+    private DateTime _lastType = DateTime.Now;
+
     private ObservableCollection<SearchResultViewModel>? _results;
 
     public string? SearchText
     {
-        get => string.Empty;
+        get => string.IsNullOrWhiteSpace(_searchText) ? string.Empty : _searchText.ToUpper();
         set
         {
             if (string.IsNullOrWhiteSpace(value)) return;
@@ -25,13 +27,13 @@ public class SearchViewModel : NotifyPropertyChanged
 
     private async void SetSearchText(string value)
     {
-        _last = DateTime.Now;
+        SetField(ref _searchText, value);
+
+        _lastType = DateTime.Now;
 
         await Task.Delay(1000).ConfigureAwait(false);
 
-        var time = DateTime.Now;
-
-        if ((time - _last).TotalMilliseconds > 950)
+        if ((DateTime.Now - _lastType).TotalMilliseconds > 950)
         {
             SearchCoins(value);
         }
@@ -43,11 +45,11 @@ public class SearchViewModel : NotifyPropertyChanged
         set => SetField(ref _results, value);
     }
 
-    public void SearchCoins(string query)
+    private void SearchCoins(string query, int amount = 50)
     {
         var data = new CoinGeckoApiClient().SearchCoins(query).Result;
 
-        var list = data.Take(20).Where(x => x.Rank is not null).Select(x => new SearchResultViewModel(x));
+        var list = data.Take(amount).Where(x => x.Rank is not null).Select(x => new SearchResultViewModel(x));
 
         SearchResults = new ObservableCollection<SearchResultViewModel>(list);
     }

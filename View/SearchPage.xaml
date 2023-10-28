@@ -13,50 +13,110 @@
     </Page.DataContext>
 
     <DockPanel>
-        <TextBox
-            Name="SearchBar"
-            DockPanel.Dock="Top"
-            Text="{Binding SearchText, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
-        <ListView ItemsSource="{Binding SearchResults, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35" />
-                            <ColumnDefinition Width="280" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding SearchResult.Rank}" />
-                        <DockPanel Grid.Column="1">
-                            <Image
-                                Width="28" Height="28"
-                                Source="{Binding SearchResult.Thumb}"
-                                RenderOptions.BitmapScalingMode="HighQuality" />
-                            <Button
-                                Command="{Binding OpenPage}"
-                                CommandParameter="{Binding SearchResult.Id}"
-                                Style="{StaticResource HrefButton}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                HorizontalContentAlignment="Left"
-                                Width="240">
-                                <StackPanel Orientation="Horizontal">
+        <Border
+            DockPanel.Dock="Top"
+            Width="400" Height="40"
+            Margin="0 20"
+            CornerRadius="5"
+            Background="#f1f5f9"
+            BorderThickness="0">
+            <Grid>
+                <TextBox
+                    Name="SearchBar"
+                    Padding="10" TextAlignment="Center"
+                    BorderThickness="0"
+                    FontSize="14" FontWeight="SemiBold"
+                    Foreground="#5E6875"
+                    Background="Transparent"
+                    Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock
+                    IsHitTestVisible="False"
+                    Text="Search coins…"
+                    FontSize="14"
+                    Padding="10" TextAlignment="Center"
+                    Foreground="#94a3b8">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=SearchBar}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Border>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ListView
+                    Grid.Column="1"
+                    BorderThickness="0"
+                    Margin="0 0 0 25"
+                    ItemContainerStyle="{StaticResource Coins}"
+                    ItemsSource="{Binding SearchResults, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0 0 0 1" BorderBrush="#ECEFF2">
+                                <Grid Margin="0 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="360" />
+                                        <ColumnDefinition Width="140" />
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel Grid.Column="0">
+                                        <Image
+                                            Width="28" Height="28"
+                                            Margin="10 0"
+                                            Source="{Binding SearchResult.Thumb}"
+                                            RenderOptions.BitmapScalingMode="HighQuality" />
+                                        <Button
+                                            Command="{Binding OpenPage}"
+                                            CommandParameter="{Binding SearchResult.Id}"
+                                            Style="{StaticResource HrefButton}"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            HorizontalContentAlignment="Left"
+                                            Width="360">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    Text="{Binding SearchResult.Name}"
+                                                    VerticalAlignment="Bottom"
+                                                    Foreground="#333333"
+                                                    FontSize="14" FontWeight="Bold" />
+                                                <TextBlock
+                                                    Text="{Binding SearchResult.Symbol}"
+                                                    Padding="8 0" FontSize="12"
+                                                    VerticalAlignment="Bottom"
+                                                    Foreground="#64748b" />
+                                            </StackPanel>
+                                        </Button>
+                                    </DockPanel>
                                     <TextBlock
-                                        Text="{Binding SearchResult.Name}"
-                                        VerticalAlignment="Bottom"
-                                        Foreground="#333333"
-                                        FontWeight="Bold" />
-                                    <TextBlock
-                                        Text="{Binding SearchResult.Symbol}"
-                                        Padding="8 0" FontSize="12"
-                                        VerticalAlignment="Bottom"
-                                        Foreground="#64748b" />
-                                </StackPanel>
-                            </Button>
-                        </DockPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                        Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="13.3" FontWeight="SemiBold"
+                                        Foreground="#1e293b"
+                                        Text="{Binding SearchResult.Rank, StringFormat=#{0}}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter /> <!--Enables wheel-scrolling over listview-->
+                        </ControlTemplate>
+                    </ListView.Template>
+                </ListView>
+            </Grid>
+        </ScrollViewer>
     </DockPanel>
 </Page>
