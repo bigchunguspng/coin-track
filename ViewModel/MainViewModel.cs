@@ -14,7 +14,7 @@ public class MainViewModel : NotifyPropertyChanged
         TabBar = new TabBar(new ObservableCollection<Page>() { mainPage });
 
         OpenMainPage = new RelayCommand(_ => TabBar.NewTab(mainPage));
-        OpenSearchPage = new RelayCommand(_ => TabBar.NewTab( new SearchPage()));
+        OpenSearchPage = new RelayCommand(_ => TabBar.NewTab(new SearchPage()));
 
         Instance = this;
     }
@@ -24,6 +24,6 @@ public class MainViewModel : NotifyPropertyChanged
     public TabBar TabBar { get; }
 
     public RelayCommand OpenMainPage { get; }
-    
+
     public RelayCommand OpenSearchPage { get; }
 }

@@ -23,7 +23,7 @@ public class SearchPageViewModel : NotifyPropertyChanged
     private async void SetSearchText(string value)
     {
         SetField(ref _searchText, value);
-        
+
         if (string.IsNullOrWhiteSpace(value)) return;
 
         _lastType = DateTime.Now;

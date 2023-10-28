@@ -21,7 +21,7 @@ public class RelayCommand : ICommand
 
         _execute = execute;
     }
-    
+
     public RelayCommand(Action<object?> execute, Func<bool> canExecute)
     {
         ArgumentNullException.ThrowIfNull(execute);

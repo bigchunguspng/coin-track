@@ -11,7 +11,7 @@ public partial class SearchPage : Page
     }
 
     /// <summary>
-    /// Is used to fix switching tabs when the searchbar is focused
+    /// Is used to fix switching between tabs when the searchbar is focused.
     /// </summary>
     private void SearchBar_OnPreviewKeyDown(object sender, KeyEventArgs e)
     {
