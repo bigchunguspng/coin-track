@@ -28,9 +28,8 @@
     <Window.Resources>
         <Style TargetType="ContentControl" BasedOn="{StaticResource Plain}" />
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#212529" />
+            <Setter Property="Foreground" Value="{StaticResource Text60}" />
         </Style>
-        <SolidColorBrush x:Key="LightGreen" Color="#e8fcc9" />
     </Window.Resources>
 
     <DockPanel> <!--Root-container-->
@@ -49,9 +48,9 @@
 
         <!--Title bar-->
 
-        <Grid DockPanel.Dock="Top" Background="{StaticResource LightGreen}">
+        <Grid DockPanel.Dock="Top" Background="{StaticResource Green10}">
             <TextBlock
-                Text="CoinTrack" Margin="10 0" Foreground="#3c3c3c"
+                Text="CoinTrack" Margin="10 0" Foreground="{StaticResource Text35}"
                 VerticalAlignment="Center" HorizontalAlignment="Left" />
             <StackPanel
                 WindowChrome.IsHitTestVisibleInChrome="True"
@@ -74,10 +73,10 @@
             ItemsSource="{Binding TabBar.Tabs}"
             SelectedItem="{Binding TabBar.ActiveTab}"
             ItemContainerStyle="{StaticResource Tab}"
-            BorderThickness="0 0 0 2" BorderBrush="#B4E29C"
+            BorderThickness="0 0 0 2" BorderBrush="{StaticResource Green20}"
             Margin="0" Padding="-1 4 -1 -1"
             FocusVisualStyle="{x:Null}"
-            Background="{StaticResource LightGreen}">
+            Background="{StaticResource Green10}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

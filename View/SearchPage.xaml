@@ -19,7 +19,7 @@
             Width="400" Height="40"
             Margin="0 20"
             CornerRadius="5"
-            Background="#f1f5f9"
+            Background="{StaticResource Back15}"
             BorderThickness="0">
             <Grid>
                 <TextBox
@@ -27,7 +27,7 @@
                     Padding="10" TextAlignment="Center"
                     BorderThickness="0"
                     FontSize="14" FontWeight="SemiBold"
-                    Foreground="#5E6875"
+                    Foreground="{StaticResource Blue35}"
                     Background="Transparent"
                     PreviewKeyDown="SearchBar_OnPreviewKeyDown"
                     Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -36,7 +36,7 @@
                     Text="Search coins…"
                     FontSize="14"
                     Padding="10" TextAlignment="Center"
-                    Foreground="#94a3b8">
+                    Foreground="{StaticResource Blue20}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="Visibility" Value="Collapsed" />
@@ -67,7 +67,7 @@
                     ItemsSource="{Binding SearchResults, UpdateSourceTrigger=PropertyChanged}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="0 0 0 1" BorderBrush="#ECEFF2">
+                            <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
                                 <Grid Margin="0 10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="360" />
@@ -90,13 +90,13 @@
                                                 <TextBlock
                                                     Text="{Binding SearchResult.Name}"
                                                     VerticalAlignment="Bottom"
-                                                    Foreground="#333333"
+                                                    Foreground="{StaticResource Text40}"
                                                     FontSize="14" FontWeight="Bold" />
                                                 <TextBlock
                                                     Text="{Binding SearchResult.Symbol}"
                                                     Padding="8 0" FontSize="12"
                                                     VerticalAlignment="Bottom"
-                                                    Foreground="#64748b" />
+                                                    Foreground="{StaticResource Blue30}" />
                                             </StackPanel>
                                         </Button>
                                     </DockPanel>
@@ -105,7 +105,7 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         FontSize="13.3" FontWeight="SemiBold"
-                                        Foreground="#1e293b"
+                                        Foreground="{StaticResource Blue80}"
                                         Text="{Binding SearchResult.Rank, StringFormat=#{0}}" />
                                 </Grid>
                             </Border>

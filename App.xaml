@@ -6,6 +6,28 @@
              Startup="Application_Startup">
     <Application.Resources>
 
+        <SolidColorBrush x:Key="Back10" Color="#f0f5fa" />
+        <SolidColorBrush x:Key="Back15" Color="#f1f5f9" />
+        <SolidColorBrush x:Key="Back20" Color="#ECEFF2" />
+        <SolidColorBrush x:Key="Back25" Color="#E3E7EB" />
+
+        <SolidColorBrush x:Key="Green10" Color="#e8fcc9" />
+        <SolidColorBrush x:Key="Green12" Color="#D6DFC8" />
+        <SolidColorBrush x:Key="Green15" Color="#d2f1b6" />
+        <SolidColorBrush x:Key="Green20" Color="#B4E29C" />
+        <SolidColorBrush x:Key="Green50" Color="#4DB860" />
+
+        <SolidColorBrush x:Key="Blue20" Color="#94a3b8" />
+        <SolidColorBrush x:Key="Blue30" Color="#64748b" />
+        <SolidColorBrush x:Key="Blue35" Color="#5E6875" />
+        <SolidColorBrush x:Key="Blue80" Color="#1e293b" />
+        <SolidColorBrush x:Key="Blue90" Color="#0f172a" />
+
+        <SolidColorBrush x:Key="Text30" Color="#4a4a4a" />
+        <SolidColorBrush x:Key="Text35" Color="#3c3c3c" />
+        <SolidColorBrush x:Key="Text40" Color="#333333" />
+        <SolidColorBrush x:Key="Text60" Color="#212529" />
+
         <Style TargetType="ContentControl" x:Key="Plain">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
@@ -30,7 +52,7 @@
             </Style.Setters>
             <Style.Triggers>
                 <Trigger Property="Button.IsMouseOver" Value="True">
-                    <Setter Property="Button.Background" Value="#D6DFC8" />
+                    <Setter Property="Button.Background" Value="{StaticResource Green12}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -78,7 +100,7 @@
             <Setter Property="Focusable" Value="False" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#f0f5fa" />
+                    <Setter Property="Background" Value="{StaticResource Back10}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -87,10 +109,10 @@
             <Setter Property="Margin" Value="8 5 0 0" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#D2F1B6" />
+                    <Setter Property="Background" Value="{StaticResource Green15}" />
                 </Trigger>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#B4E29C" />
+                    <Setter Property="Background" Value="{StaticResource Green20}" />
                 </Trigger>
             </Style.Triggers>
         </Style>

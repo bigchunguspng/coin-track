@@ -31,7 +31,7 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="FontWeight" Value="Bold" />
                     <Setter Property="FontSize" Value="13" />
-                    <Setter Property="Foreground" Value="#4a4a4a" />
+                    <Setter Property="Foreground" Value="{StaticResource Text30}" />
                 </Style>
             </Grid.Resources>
             <TextBlock Grid.Column="0" Text="Exchange" Padding="10 0" />
@@ -39,9 +39,9 @@
             <TextBlock Grid.Column="2" Text="Price" HorizontalAlignment="Right" />
             <TextBlock Grid.Column="3" Text="24h Volume" HorizontalAlignment="Right" />
         </Grid>
-        
+
         <!--Data-->
-        
+
         <ListView
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             ItemsSource="{Binding Tickers}"
@@ -50,7 +50,7 @@
             BorderThickness="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="0 0 0 1" BorderBrush="#ECEFF2">
+                    <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
                         <Grid
                             Margin="0 10">
                             <Grid.ColumnDefinitions>
@@ -62,7 +62,7 @@
                             <Grid.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="13.3" />
-                                    <Setter Property="Foreground" Value="#212529" />
+                                    <Setter Property="Foreground" Value="{StaticResource Text60}" />
                                 </Style>
                             </Grid.Resources>
 
@@ -76,7 +76,7 @@
                                     RenderOptions.BitmapScalingMode="HighQuality" />
                                 <TextBlock
                                     Text="{Binding Exchange.Name}"
-                                    Foreground="#0f172a"
+                                    Foreground="{StaticResource Blue90}"
                                     VerticalAlignment="Center"
                                     FontSize="14" FontWeight="Bold" />
                             </StackPanel>
@@ -85,12 +85,12 @@
 
                             <TextBlock Grid.Column="1" VerticalAlignment="Center">
                                 <Hyperlink
-                                    Foreground="#64748b"
+                                    Foreground="{StaticResource Blue30}"
                                     NavigateUri="{Binding TradeURL}"
                                     RequestNavigate="Hyperlink_RequestNavigate">
                                     <TextBlock
                                         Text="{Binding Pair}"
-                                        Foreground="#64748b" />
+                                        Foreground="{StaticResource Blue30}" />
                                 </Hyperlink>
                             </TextBlock>
 

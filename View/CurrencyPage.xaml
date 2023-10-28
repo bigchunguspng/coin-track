@@ -32,12 +32,12 @@
                 <!--Rank-->
 
                 <DockPanel LastChildFill="False">
-                    <Border Background="#1e293b" CornerRadius="5" Margin="0 0 0 20">
+                    <Border Background="{StaticResource Blue80}" CornerRadius="5" Margin="0 0 0 20">
                         <TextBlock
                             Text="{Binding Currency.Rank, StringFormat=Rank #{0}}"
                             FontWeight="SemiBold"
                             Padding="8 2"
-                            Foreground="#f1f5f9" />
+                            Foreground="{StaticResource Back15}" />
                     </Border>
                 </DockPanel>
 
@@ -54,12 +54,12 @@
                         FontSize="18" FontWeight="Bold"
                         VerticalAlignment="Center"
                         Margin="8 0"
-                        Foreground="#0f172a" />
+                        Foreground="{StaticResource Blue90}" />
                     <TextBlock
                         Text="{Binding Currency.Symbol}"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        Foreground="#64748b" />
+                        Foreground="{StaticResource Blue30}" />
                 </DockPanel>
 
                 <!--Price-->
@@ -68,7 +68,7 @@
                     <TextBlock
                         Text="{Binding Currency.Price, Converter={StaticResource PriceToString}}"
                         FontSize="30" FontWeight="Bold"
-                        Foreground="#0f172a" />
+                        Foreground="{StaticResource Blue90}" />
                     <TextBlock
                         Text="{Binding Currency.PriceChangePercentage24H, Converter={StaticResource PercentToArrow}}"
                         FontSize="20" FontWeight="SemiBold"
@@ -89,7 +89,8 @@
                         Height="9"
                         Margin="0 20 0 8"
                         BorderThickness="0"
-                        Foreground="#4DB860" Background="#f1f5f9" />
+                        Foreground="{StaticResource Green50}"
+                        Background="{StaticResource Back15}" />
                     <TextBlock
                         DockPanel.Dock="Left"
                         Text="{Binding Low24H}" />
@@ -119,13 +120,13 @@
                                     Text="{Binding Label}"
                                     FontSize="13"
                                     Padding="10 0"
-                                    Foreground="#64748b" />
+                                    Foreground="{StaticResource Blue30}" />
                                 <TextBlock
                                     DockPanel.Dock="Right"
                                     Text="{Binding Value}"
                                     FontSize="13"
                                     Padding="10 0"
-                                    Foreground="#0f172a"
+                                    Foreground="{StaticResource Blue90}"
                                     HorizontalAlignment="Right" />
                             </DockPanel>
                         </DataTemplate>
@@ -154,8 +155,8 @@
                                 <DockPanel Width="100">
                                     <Border
                                         DockPanel.Dock="Top"
-                                        Background="#f1f5f9"
-                                        BorderBrush="#E3E7EB"
+                                        Background="{StaticResource Back15}"
+                                        BorderBrush="{StaticResource Back25}"
                                         BorderThickness="1 1 0 1">
                                         <TextBlock
                                             Text="{Binding Label}"
@@ -163,7 +164,7 @@
                                             HorizontalAlignment="Center" />
                                     </Border>
                                     <Border
-                                        BorderBrush="#E3E7EB"
+                                        BorderBrush="{StaticResource Back25}"
                                         BorderThickness="1 0 0 1">
                                         <TextBlock
                                             Text="{Binding Value, Converter={StaticResource PercentToString}}"
@@ -185,7 +186,11 @@
                             </ControlTemplate>
                         </ListView.Template>
                     </ListView>
-                    <Border DockPanel.Dock="Right" Margin="0 25" BorderThickness="1 0 0 0" BorderBrush="#E3E7EB" />
+                    <Border
+                        DockPanel.Dock="Right"
+                        Margin="0 25"
+                        BorderThickness="1 0 0 0"
+                        BorderBrush="{StaticResource Back25}" />
                 </DockPanel>
 
                 <!--Tickers-->
@@ -195,7 +200,7 @@
                     Text="{Binding Currency.Name, StringFormat={}{0} Markets}"
                     FontSize="24" FontWeight="SemiBold"
                     Margin="0 20 0 0"
-                    Foreground="#0f172a" />
+                    Foreground="{StaticResource Blue90}" />
                 <Frame
                     DockPanel.Dock="Top"
                     NavigationUIVisibility="Hidden"

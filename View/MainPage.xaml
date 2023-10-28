@@ -22,10 +22,6 @@
 
     <DockPanel>
 
-        <!--<Grid DockPanel.Dock="Top">
-            <Button Command="{Binding FetchData}" Height="30" Width="150">Fetch data</Button>
-        </Grid>-->
-
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" Style="{StaticResource Plain}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -52,7 +48,7 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="FontWeight" Value="Bold" />
                                 <Setter Property="FontSize" Value="13" />
-                                <Setter Property="Foreground" Value="#4a4a4a" />
+                                <Setter Property="Foreground" Value="{StaticResource Text30}" />
                             </Style>
                         </Grid.Resources>
                         <TextBlock Grid.Column="0" Text="#" HorizontalAlignment="Center" />
@@ -73,7 +69,7 @@
                         ItemContainerStyle="{StaticResource Coins}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderThickness="0 0 0 1" BorderBrush="#ECEFF2">
+                                <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
                                     <Grid
                                         MinWidth="900" Margin="0 10">
                                         <Grid.ColumnDefinitions>
@@ -95,7 +91,7 @@
                                         <Grid.Resources>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="FontSize" Value="13.3" />
-                                                <Setter Property="Foreground" Value="#212529" />
+                                                <Setter Property="Foreground" Value="{StaticResource Text60}" />
                                             </Style>
                                         </Grid.Resources>
 
@@ -119,13 +115,13 @@
                                                     <TextBlock
                                                         Text="{Binding Currency.Name}"
                                                         VerticalAlignment="Bottom"
-                                                        Foreground="#333333"
+                                                        Foreground="{StaticResource Text40}"
                                                         FontWeight="Bold" />
                                                     <TextBlock
                                                         Text="{Binding Currency.Symbol}"
                                                         Padding="8 0" FontSize="12"
                                                         VerticalAlignment="Bottom"
-                                                        Foreground="#64748b" />
+                                                        Foreground="{StaticResource Blue30}" />
                                                 </StackPanel>
                                             </Button>
                                         </StackPanel>
@@ -168,10 +164,10 @@
                     </ListView>
 
                     <StackPanel HorizontalAlignment="Right" Margin="15">
-                        <TextBlock Foreground="#64748b">
+                        <TextBlock Foreground="{StaticResource Blue30}">
                             Powered by
                             <Hyperlink
-                                Foreground="#4DB860"
+                                Foreground="{StaticResource Green50}"
                                 NavigateUri="https://www.coingecko.com/en/api"
                                 RequestNavigate="Hyperlink_RequestNavigate">
                                 CoinGecko
@@ -182,5 +178,6 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
+
     </DockPanel>
 </Page>
