@@ -39,7 +39,7 @@ public class SearchPageViewModel : NotifyPropertyChanged
 
     private void SearchCoins(string query, int amount = 50)
     {
-        var data = new CoinGeckoApiClient().SearchCoins(query).Result;
+        var data = AppServices.Get<CoinGeckoApiClient>().SearchCoins(query).Result;
 
         var list = data.Take(amount).Where(x => x.Rank is not null).Select(x => new SearchResultViewModel(x));
 

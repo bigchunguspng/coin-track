@@ -13,7 +13,7 @@ public partial class TickersView : UserControl
 
     private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
     {
-        new HyperlinkService().OpenLink(e.Uri.AbsoluteUri);
+        AppServices.Get<HyperlinkService>().OpenLink(e.Uri.AbsoluteUri);
         e.Handled = true;
     }
 }

@@ -13,7 +13,9 @@ public class MainPageViewModel : NotifyPropertyChanged
     {
         FetchData = new RelayCommand(_ =>
         {
-            Coins = new(new CoinGeckoApiClient().GetTopCurrencies().Result.Select(x => new CurrencyViewModel(x)));
+            var coins = AppServices.Get<CoinGeckoApiClient>().GetTopCurrencies().Result;
+            
+            Coins = new ObservableCollection<CurrencyViewModel>(coins.Select(x => new CurrencyViewModel(x)));
         });
     }
 
