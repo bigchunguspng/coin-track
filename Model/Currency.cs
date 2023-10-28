@@ -5,11 +5,17 @@ namespace CoinTrack.Model;
 /// <summary> Data to be showed on the main page. </summary>
 public class Currency : ICoinIdentity
 {
+    private string _symbol = null!;
+
     [JsonProperty("id")]
     public string Id { get; set; } = null!;
 
     [JsonProperty("symbol")]
-    public string Symbol { get; set; } = null!;
+    public string Symbol
+    {
+        get => _symbol.ToUpper();
+        set => _symbol = value;
+    }
 
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
@@ -18,7 +24,6 @@ public class Currency : ICoinIdentity
     public string Image { get; set; } = null!;
 
 
-    /// <summary> Price in USD. </summary>
     [JsonProperty("current_price")]
     public decimal Price { get; set; }
 

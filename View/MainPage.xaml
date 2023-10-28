@@ -122,7 +122,7 @@
                                                         Foreground="#333333"
                                                         FontWeight="Bold" />
                                                     <TextBlock
-                                                        Text="{Binding Symbol}"
+                                                        Text="{Binding Currency.Symbol}"
                                                         Padding="8 0" FontSize="12"
                                                         VerticalAlignment="Bottom"
                                                         Foreground="#64748b" />
