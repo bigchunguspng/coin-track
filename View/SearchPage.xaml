@@ -6,13 +6,15 @@
       xmlns:local="clr-namespace:CoinTrack.View"
       xmlns:vm="clr-namespace:CoinTrack.ViewModel"
       mc:Ignorable="d"
-      Title="Search">
+      Title="Search"
+      FocusManager.FocusedElement="{Binding ElementName=SearchBar}">
     <Page.DataContext>
         <vm:SearchViewModel />
     </Page.DataContext>
 
     <DockPanel>
         <TextBox
+            Name="SearchBar"
             DockPanel.Dock="Top"
             Text="{Binding SearchText, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
