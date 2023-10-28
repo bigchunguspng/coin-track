@@ -88,7 +88,7 @@ public class CoinGeckoApiClient
     {
         using var response = await _client.GetAsync(url).ConfigureAwait(false);
 
-        response.EnsureSuccessStatusCode(); // todo handle exceptions
+        response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadAsStringAsync();
     }
