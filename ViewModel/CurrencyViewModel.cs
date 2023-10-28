@@ -27,12 +27,12 @@ public class CurrencyViewModel : NotifyPropertyChanged
             new("Market Cap", $"${Currency.MarketCap:N0}"),
             new("Trading Volume", $"${Currency.Volume24H:N0}"),
             new("Volume / Market Cap", $"{Currency.VolumeToMarketCap * 100:N2}%"),
-            new("Circulating Supply ", $"{Currency.CirculatingSupply:N0}"),
-            new("Total Supply ", $"{Currency.TotalSupply:N0}"),
-            new("Max Supply ", Currency.MaxSupply is null ? "∞" : $"{Currency.MaxSupply:N0}")
+            new("Circulating Supply", $"{Currency.CirculatingSupply:N0}"),
+            new("Total Supply", Currency.TotalSupply is null ? "--" : $"{Currency.TotalSupply:N0}"),
+            new("Max Supply", Currency.MaxSupply is null ? "∞" : $"{Currency.MaxSupply:N0}")
         };
 
-        PriceChanges = new ObservableCollection<IndicatorValue<decimal>>()
+        PriceChanges = new ObservableCollection<IndicatorValue<decimal?>>()
         {
             new("1h", Currency.PriceChangePercentage1H),
             new("24h", Currency.PriceChangePercentage24H),
@@ -54,9 +54,11 @@ public class CurrencyViewModel : NotifyPropertyChanged
     public string Low24H => GetPriceString(Currency.Low24H);
 
     // [high_24h] and [high_24h] values returned by API can have no fractional part
-    private string GetPriceString(decimal price)
+    private string GetPriceString(decimal? price)
     {
-        var fraction = price - Math.Truncate(price);
+        if (price is null) return string.Empty;
+
+        var fraction = price.Value - Math.Truncate(price.Value);
         var isInteger = Math.Abs(fraction) < 0.000_000_001M;
 
         if (isInteger) return $"${price:N0}";
@@ -67,7 +69,7 @@ public class CurrencyViewModel : NotifyPropertyChanged
 
     public ObservableCollection<IndicatorValue<string>> Indicators { get; }
 
-    public ObservableCollection<IndicatorValue<decimal>> PriceChanges { get; }
+    public ObservableCollection<IndicatorValue<decimal?>> PriceChanges { get; }
 
     public record IndicatorValue<T>(string Indicator, T Value);
 }

@@ -33,11 +33,11 @@ public class CurrencySummary
 
 
     [JsonProperty("price_change_percentage_1h_in_currency")]
-    public decimal PriceChangePercentage1H { get; set; }
+    public decimal? PriceChangePercentage1H { get; set; }
 
     [JsonProperty("price_change_percentage_24h_in_currency")]
-    public decimal PriceChangePercentage24H { get; set; }
+    public decimal? PriceChangePercentage24H { get; set; }
 
     [JsonProperty("price_change_percentage_7d_in_currency")]
-    public decimal PriceChangePercentage7D { get; set; }
+    public decimal? PriceChangePercentage7D { get; set; }
 }

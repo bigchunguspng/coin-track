@@ -19,20 +19,20 @@ public class CurrencyDetails : CurrencySummary
 
 
     [JsonProperty("price_change_percentage_14d_in_currency")]
-    public decimal PriceChangePercentage14D { get; set; }
+    public decimal? PriceChangePercentage14D { get; set; }
 
     [JsonProperty("price_change_percentage_30d_in_currency")]
-    public decimal PriceChangePercentage30D { get; set; }
+    public decimal? PriceChangePercentage30D { get; set; }
 
     [JsonProperty("price_change_percentage_1y_in_currency")]
-    public decimal PriceChangePercentage1Y { get; set; }
+    public decimal? PriceChangePercentage1Y { get; set; }
 
 
     [JsonProperty("high_24h")]
-    public decimal High24H { get; set; }
+    public decimal? High24H { get; set; }
 
     [JsonProperty("low_24h")]
-    public decimal Low24H { get; set; }
+    public decimal? Low24H { get; set; }
 
 
     // todo ath/l (price, %, date)

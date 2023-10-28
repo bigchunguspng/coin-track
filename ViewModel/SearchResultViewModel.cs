@@ -4,9 +4,9 @@ using CoinTrack.View;
 
 namespace CoinTrack.ViewModel;
 
-public class CoinSearchResultViewModel
+public class SearchResultViewModel
 {
-    public CoinSearchResultViewModel(CoinSearchResult searchResult)
+    public SearchResultViewModel(CoinSearchResult searchResult)
     {
         SearchResult = searchResult;
         OpenPage = new RelayCommand(id =>

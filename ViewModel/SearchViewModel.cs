@@ -10,7 +10,7 @@ namespace CoinTrack.ViewModel;
 public class SearchViewModel : NotifyPropertyChanged
 {
     private DateTime _last = DateTime.Now;
-    private ObservableCollection<CoinSearchResultViewModel>? _results;
+    private ObservableCollection<SearchResultViewModel>? _results;
 
     public string? SearchText
     {
@@ -37,7 +37,7 @@ public class SearchViewModel : NotifyPropertyChanged
         }
     }
 
-    public ObservableCollection<CoinSearchResultViewModel>? SearchResults
+    public ObservableCollection<SearchResultViewModel>? SearchResults
     {
         get => _results;
         set => SetField(ref _results, value);
@@ -47,8 +47,8 @@ public class SearchViewModel : NotifyPropertyChanged
     {
         var data = new CoinGeckoApiClient().SearchCoins(query).Result;
 
-        var list = data.Take(20).Select(x => new CoinSearchResultViewModel(x));
+        var list = data.Take(20).Where(x => x.Rank is not null).Select(x => new SearchResultViewModel(x));
 
-        SearchResults = new ObservableCollection<CoinSearchResultViewModel>(list);
+        SearchResults = new ObservableCollection<SearchResultViewModel>(list);
     }
 }

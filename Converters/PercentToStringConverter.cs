@@ -2,10 +2,12 @@ using System;
 
 namespace CoinTrack.Converters;
 
-public class PercentToStringConverter : OneWayConverter<decimal>
+public class PercentToStringConverter : OneWayConverter<decimal?>
 {
-    protected override object Convert(decimal value)
+    protected override object Convert(decimal? value)
     {
-        return $"{Math.Round(value, 1)}%";
+        if (value is null) return "--";
+
+        return $"{Math.Round(value.Value, 1)}%";
     }
 }
