@@ -39,6 +39,9 @@
             <TextBlock Grid.Column="2" Text="Price" HorizontalAlignment="Right" />
             <TextBlock Grid.Column="3" Text="24h Volume" HorizontalAlignment="Right" />
         </Grid>
+        
+        <!--Data-->
+        
         <ListView
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             ItemsSource="{Binding Tickers}"
@@ -63,6 +66,8 @@
                                 </Style>
                             </Grid.Resources>
 
+                            <!--Exchange identity-->
+
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Image
                                     Source="{Binding Exchange.Logo}"
@@ -76,6 +81,8 @@
                                     FontSize="14" FontWeight="Bold" />
                             </StackPanel>
 
+                            <!--Pair-->
+
                             <TextBlock Grid.Column="1" VerticalAlignment="Center">
                                 <Hyperlink
                                     Foreground="#64748b"
@@ -86,6 +93,8 @@
                                         Foreground="#64748b" />
                                 </Hyperlink>
                             </TextBlock>
+
+                            <!--Numbers-->
 
                             <TextBlock
                                 Grid.Column="2"
