@@ -21,7 +21,9 @@ public class MainWindowViewModel : NotifyPropertyChanged
 
     public static MainWindowViewModel Instance { get; private set; } = null!;
 
+
     public TabBar TabBar { get; }
+
 
     public RelayCommand OpenMainPage { get; }
 

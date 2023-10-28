@@ -7,9 +7,15 @@ namespace CoinTrack.ViewModel;
 
 public class MainPageViewModel : NotifyPropertyChanged
 {
-    private CoinGeckoApiClient ApiClient { get; } = new();
-
     private ObservableCollection<CurrencyViewModel> _coins = null!;
+
+    public MainPageViewModel()
+    {
+        FetchData = new RelayCommand(_ =>
+        {
+            Coins = new(new CoinGeckoApiClient().GetTopCurrencies().Result.Select(x => new CurrencyViewModel(x)));
+        });
+    }
 
     public ObservableCollection<CurrencyViewModel> Coins
     {
@@ -18,12 +24,4 @@ public class MainPageViewModel : NotifyPropertyChanged
     }
 
     public RelayCommand FetchData { get; }
-
-    public MainPageViewModel()
-    {
-        FetchData = new RelayCommand((_) =>
-        {
-            Coins = new(ApiClient.GetTopCurrencies().Result.Select(x => new CurrencyViewModel(x)));
-        });
-    }
 }

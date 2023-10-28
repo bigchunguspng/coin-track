@@ -15,7 +15,7 @@ public class SearchResultViewModel
         });
     }
 
-    public CoinSearchResult SearchResult { get; set; }
+    public CoinSearchResult SearchResult { get; }
 
     public RelayCommand OpenPage { get; }
 }

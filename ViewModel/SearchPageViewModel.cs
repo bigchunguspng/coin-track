@@ -14,6 +14,7 @@ public class SearchPageViewModel : NotifyPropertyChanged
 
     private ObservableCollection<SearchResultViewModel>? _results;
 
+
     public string? SearchText
     {
         get => string.IsNullOrWhiteSpace(_searchText) ? string.Empty : _searchText.ToUpper();
@@ -36,12 +37,6 @@ public class SearchPageViewModel : NotifyPropertyChanged
         }
     }
 
-    public ObservableCollection<SearchResultViewModel>? SearchResults
-    {
-        get => _results;
-        set => SetField(ref _results, value);
-    }
-
     private void SearchCoins(string query, int amount = 50)
     {
         var data = new CoinGeckoApiClient().SearchCoins(query).Result;
@@ -49,5 +44,11 @@ public class SearchPageViewModel : NotifyPropertyChanged
         var list = data.Take(amount).Where(x => x.Rank is not null).Select(x => new SearchResultViewModel(x));
 
         SearchResults = new ObservableCollection<SearchResultViewModel>(list);
+    }
+
+    public ObservableCollection<SearchResultViewModel>? SearchResults
+    {
+        get => _results;
+        set => SetField(ref _results, value);
     }
 }
