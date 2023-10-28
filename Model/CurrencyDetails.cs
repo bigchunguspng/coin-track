@@ -6,7 +6,7 @@ namespace CoinTrack.Model;
 public class CurrencyDetails : CurrencySummary
 {
     [JsonProperty("circulating_supply")]
-    public decimal CirculatingSupply { get; set; }
+    public decimal? CirculatingSupply { get; set; }
 
     [JsonProperty("total_supply")]
     public decimal? TotalSupply { get; set; }

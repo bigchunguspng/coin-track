@@ -28,9 +28,9 @@ public class CurrencyViewModel : NotifyPropertyChanged
             new("Market Cap", $"${Currency.MarketCap:N0}"),
             new("Trading Volume", $"${Currency.Volume24H:N0}"),
             new("Volume / Market Cap", $"{Currency.VolumeToMarketCap * 100:N2}%"),
-            new("Circulating Supply", $"{Currency.CirculatingSupply:N0}"),
-            new("Total Supply", Currency.TotalSupply is null ? "--" : $"{Currency.TotalSupply:N0}"),
-            new("Max Supply", Currency.MaxSupply is null ? "∞" : $"{Currency.MaxSupply:N0}")
+            new("Circulating Supply", FallbackSupply(Currency.CirculatingSupply, "--")),
+            new("Total Supply", FallbackSupply(Currency.TotalSupply, "--")),
+            new("Max Supply", FallbackSupply(Currency.MaxSupply, "∞"))
         };
 
         PriceChanges = new ObservableCollection<IndicatorValue<decimal?>>()
@@ -57,17 +57,24 @@ public class CurrencyViewModel : NotifyPropertyChanged
     public string Low24H => GetPriceString(Currency.Low24H);
 
     // [high_24h] and [high_24h] values returned by API can have no fractional part
-    private string GetPriceString(decimal? price)
+    private static string GetPriceString(decimal? price)
     {
         if (price is null) return string.Empty;
 
         var fraction = price.Value - Math.Truncate(price.Value);
         var isInteger = Math.Abs(fraction) < 0.000_000_001M;
+        var isTooCheap = price < 0.000_01M;
 
         if (isInteger) return $"${price:N0}";
+        if (isTooCheap) return $"${price:N8}";
         if (price < 1) return $"${price:N6}";
 
         return $"${price:N2}";
+    }
+
+    private static string FallbackSupply(decimal? value, string fallback)
+    {
+        return value is null ? fallback : $"{value:N0}";
     }
 
     public ObservableCollection<IndicatorValue<string>> Indicators { get; }

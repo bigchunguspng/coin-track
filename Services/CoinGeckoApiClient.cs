@@ -11,7 +11,7 @@ public class CoinGeckoApiClient
     // Cache / Update Frequency: every 45 seconds
 
     private const string BaseUrl = "https://api.coingecko.com/api/v3/";
-    private const string CoinsVsUsd6D = BaseUrl + "coins/markets?vs_currency=usd&precision=6";
+    private const string CoinsVsUsd6D = BaseUrl + "coins/markets?vs_currency=usd&precision=8";
 
     private const string TopCoins = CoinsVsUsd6D + "&price_change_percentage=1h,24h,7d&per_page={0}";
     private const string CoinById = CoinsVsUsd6D + "&price_change_percentage=1h,24h,7d,14d,30d,1y&ids={0}";
