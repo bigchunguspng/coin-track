@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace CoinTrack.Model;
@@ -20,10 +19,4 @@ public class CoinSearchResult
 
     [JsonProperty("thumb")]
     public string Thumb { get; set; } = null!;
-}
-
-public class SearchResult
-{
-    [JsonProperty("coins")]
-    public List<CoinSearchResult> Coins { get; set; } = null!;
 }

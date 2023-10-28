@@ -12,8 +12,4 @@ public class TickerViewModel
     public Ticker Ticker { get; set; }
 
     public string Pair => $"{Ticker.Base}/{Ticker.Target}";
-    
-    public decimal LastPriceUSD => Ticker.LastPriceConverted["usd"];
-
-    public decimal VolumeUSD => Ticker.VolumeConverted["usd"];
 }

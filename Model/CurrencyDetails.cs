@@ -3,8 +3,18 @@ using Newtonsoft.Json;
 namespace CoinTrack.Model;
 
 /// <summary> Data to be showed on a currency page. </summary>
-public class CurrencyDetails : CurrencySummary
+public class CurrencyDetails : Currency
 {
+    [JsonProperty("high_24h")]
+    public decimal? High24H { get; set; }
+
+    [JsonProperty("low_24h")]
+    public decimal? Low24H { get; set; }
+
+
+    public decimal VolumeToMarketCap => Volume24H / (decimal)MarketCap;
+
+
     [JsonProperty("circulating_supply")]
     public decimal? CirculatingSupply { get; set; }
 
@@ -15,9 +25,6 @@ public class CurrencyDetails : CurrencySummary
     public decimal? MaxSupply { get; set; }
 
 
-    public decimal VolumeToMarketCap => Volume24H / (decimal)MarketCap;
-
-
     [JsonProperty("price_change_percentage_14d_in_currency")]
     public decimal? PriceChangePercentage14D { get; set; }
 
@@ -26,14 +33,4 @@ public class CurrencyDetails : CurrencySummary
 
     [JsonProperty("price_change_percentage_1y_in_currency")]
     public decimal? PriceChangePercentage1Y { get; set; }
-
-
-    [JsonProperty("high_24h")]
-    public decimal? High24H { get; set; }
-
-    [JsonProperty("low_24h")]
-    public decimal? Low24H { get; set; }
-
-
-    // todo ath/l (price, %, date)
 }

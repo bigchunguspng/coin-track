@@ -65,12 +65,12 @@
 
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Image
-                                    Source="{Binding Ticker.Market.Logo}"
+                                    Source="{Binding Ticker.Exchange.Logo}"
                                     Width="28" Height="28"
                                     Margin="10 0"
                                     RenderOptions.BitmapScalingMode="HighQuality" />
                                 <TextBlock
-                                    Text="{Binding Ticker.Market.Name}"
+                                    Text="{Binding Ticker.Exchange.Name}"
                                     Foreground="#0f172a"
                                     VerticalAlignment="Center"
                                     FontSize="14" FontWeight="Bold" />
@@ -89,12 +89,12 @@
 
                             <TextBlock
                                 Grid.Column="2"
-                                Text="{Binding LastPriceUSD, Converter={StaticResource PriceToString}}"
+                                Text="{Binding Ticker.LastPrice, Converter={StaticResource PriceToString}}"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Right" />
                             <TextBlock
                                 Grid.Column="3"
-                                Text="{Binding VolumeUSD, StringFormat=${0:N0}}"
+                                Text="{Binding Ticker.Volume24H, StringFormat=${0:N0}}"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Right" />
 

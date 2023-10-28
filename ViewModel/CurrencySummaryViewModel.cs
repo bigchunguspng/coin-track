@@ -6,7 +6,7 @@ namespace CoinTrack.ViewModel;
 
 public class CurrencySummaryViewModel
 {
-    public CurrencySummaryViewModel(CurrencySummary currency)
+    public CurrencySummaryViewModel(Currency currency)
     {
         Currency = currency;
 
@@ -17,7 +17,7 @@ public class CurrencySummaryViewModel
         });
     }
 
-    public CurrencySummary Currency { get; }
+    public Currency Currency { get; }
 
     public RelayCommand OpenPage { get; }
 

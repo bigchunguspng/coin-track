@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CoinTrack.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CoinTrack.Services;
 
@@ -31,15 +34,13 @@ public class CoinGeckoApiClient
     /// <summary>
     /// Returns top 20 (by default) currencies ranked by market cap.
     /// </summary>
-    public async Task<List<CurrencySummary>> GetTopCurrencies(int perPage = 20)
+    public async Task<List<Currency>> GetTopCurrencies(int perPage = 20)
     {
         var url = string.Format(TopCoins, perPage.ToString());
 
-        var data = await GetResponse(url).ConfigureAwait(false);
+        var json = await GetResponse(url).ConfigureAwait(false);
 
-        //var data = await File.ReadAllTextAsync(@"C:\Users\Osaka\dev\.NET\DCT\CoinTrack\fake_api_coins.json").ConfigureAwait(false);
-
-        return JsonConvert.DeserializeObject<List<CurrencySummary>>(data)!;
+        return JsonConvert.DeserializeObject<List<Currency>>(json)!;
     }
 
     /// <summary>
@@ -49,9 +50,9 @@ public class CoinGeckoApiClient
     {
         var url = string.Format(CoinById, id);
 
-        var data = await GetResponse(url).ConfigureAwait(false);
+        var json = await GetResponse(url).ConfigureAwait(false);
 
-        return JsonConvert.DeserializeObject<List<CurrencyDetails>>(data)![0];
+        return JsonConvert.DeserializeObject<List<CurrencyDetails>>(json)![0];
     }
 
     /// <summary>
@@ -61,13 +62,21 @@ public class CoinGeckoApiClient
     {
         var url = string.Format(TickersById, id);
 
-        var data = await GetResponse(url).ConfigureAwait(false);
+        var json = await GetResponse(url).ConfigureAwait(false);
 
-        var model = JsonConvert.DeserializeObject<TickersModel>(data)!;
+        var tickers = SelectJToken(json, "tickers").Select(delegate(JToken jt)
+        {
+            var ticker = jt.ToObject<Ticker>()!;
 
-        return model.Tickers;
+            ticker.LastPrice = (decimal)jt.SelectToken("converted_last.usd")!;
+            ticker.Volume24H = (decimal)jt.SelectToken("converted_volume.usd")!;
+
+            return ticker;
+        });
+
+        return tickers.ToList();
     }
-    
+
     /// <summary>
     /// Searches for cryptocurrencies by it's id, name, or symbol.
     /// </summary>
@@ -75,11 +84,11 @@ public class CoinGeckoApiClient
     {
         var url = string.Format(Search, query);
 
-        var data = await GetResponse(url).ConfigureAwait(false);
+        var json = await GetResponse(url).ConfigureAwait(false);
 
-        var model = JsonConvert.DeserializeObject<SearchResult>(data)!;
+        var coins = SelectJToken(json, "coins").Select(jt => jt.ToObject<CoinSearchResult>()!);
 
-        return model.Coins;
+        return coins.ToList();
     }
 
     /// <summary> Wraps the process making an HTTP GET-request. </summary>
@@ -91,5 +100,10 @@ public class CoinGeckoApiClient
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadAsStringAsync();
+    }
+
+    private JToken SelectJToken(string json, string path)
+    {
+        return JObject.Parse(json).SelectToken(path)!;
     }
 }
