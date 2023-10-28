@@ -18,6 +18,8 @@ public class CoinGeckoApiClient
 
     private const string TickersById = BaseUrl + "coins/{0}/tickers?include_exchange_logo=true&order=volume_desc";
 
+    private const string Search = BaseUrl + "search?query={0}";
+
     private readonly HttpClient _client = new()
     {
         DefaultRequestHeaders =
@@ -64,6 +66,20 @@ public class CoinGeckoApiClient
         var model = JsonConvert.DeserializeObject<TickersModel>(data)!;
 
         return model.Tickers;
+    }
+    
+    /// <summary>
+    /// Searches for cryptocurrencies by it's id, name, or symbol.
+    /// </summary>
+    public async Task<List<CoinSearchResult>> SearchCoins(string query)
+    {
+        var url = string.Format(Search, query);
+
+        var data = await GetResponse(url).ConfigureAwait(false);
+
+        var model = JsonConvert.DeserializeObject<SearchResult>(data)!;
+
+        return model.Coins;
     }
 
     /// <summary> Wraps the process making an HTTP GET-request. </summary>

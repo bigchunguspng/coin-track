@@ -1,0 +1,29 @@
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace CoinTrack.Model;
+
+public class CoinSearchResult
+{
+    [JsonProperty("id")]
+    public string Id { get; set; } = null!;
+
+    [JsonProperty("name")]
+    public string Name { get; set; } = null!;
+
+    [JsonProperty("symbol")]
+    public string Symbol { get; set; } = null!;
+
+
+    [JsonProperty("market_cap_rank")]
+    public int? Rank { get; set; }
+
+    [JsonProperty("thumb")]
+    public string Thumb { get; set; } = null!;
+}
+
+public class SearchResult
+{
+    [JsonProperty("coins")]
+    public List<CoinSearchResult> Coins { get; set; } = null!;
+}

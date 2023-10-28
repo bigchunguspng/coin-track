@@ -103,7 +103,7 @@
             </ListView.ItemsPanel>
         </ListView>
 
-        <Frame 
+        <Frame
             NavigationUIVisibility="Hidden"
             Content="{Binding TabBar.ActiveTab.Page}" />
 
@@ -122,10 +122,14 @@
         <KeyBinding
             Command="{Binding OpenMainPage}"
             Modifiers="Control" Key="M" />
+        <KeyBinding
+            Command="{Binding OpenSearchPage}"
+            Modifiers="Control" Key="F" />
     </Window.InputBindings>
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Command="{Binding OpenMainPage}" Header="Open main page" InputGestureText="Ctrl+M" />
+            <MenuItem Command="{Binding OpenMainPage}" Header="Main page" InputGestureText="Ctrl+M" />
+            <MenuItem Command="{Binding OpenSearchPage}" Header="Search" InputGestureText="Ctrl+F" />
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

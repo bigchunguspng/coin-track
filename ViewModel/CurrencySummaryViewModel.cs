@@ -10,7 +10,7 @@ public class CurrencySummaryViewModel
     {
         Currency = currency;
 
-        OpenAsNewPage = new RelayCommand((_) =>
+        OpenPage = new RelayCommand((_) =>
         {
             CurrencyViewModel.TempId = Currency.Id;
             MainViewModel.Instance.TabBar.NewTab(new CurrencyView());
@@ -19,7 +19,7 @@ public class CurrencySummaryViewModel
 
     public CurrencySummary Currency { get; }
 
-    public RelayCommand OpenAsNewPage { get; }
+    public RelayCommand OpenPage { get; }
 
     public string Symbol => Currency.Symbol.ToUpper();
 }
