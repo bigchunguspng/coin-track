@@ -14,6 +14,8 @@
     <SolidColorBrush x:Key="Green50" Color="#4DB860" />
     <SolidColorBrush x:Key="Green70" Color="#0e1f18" /> <!--Titlebar text-->
 
+    <SolidColorBrush x:Key="GreenX" Color="#20338951" />
+
     <SolidColorBrush x:Key="Blue20" Color="#94a3b8" /> <!--Searchbar placeholder-->
     <SolidColorBrush x:Key="Blue30" Color="#64748b" />
     <SolidColorBrush x:Key="Blue35" Color="#5E6875" /> <!--Searchbar input-->
