@@ -11,7 +11,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Width="1280" Height="720"
-        MinWidth="960" MinHeight="720"
+        MinWidth="960" MinHeight="480"
         Background="{DynamicResource Back00}">
 
     <Window.DataContext>
