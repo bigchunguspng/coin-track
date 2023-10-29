@@ -81,6 +81,12 @@
                     Visibility="{Binding PriceRangeVisibility}"
                     Width="300"
                     HorizontalAlignment="Left">
+                    <DockPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="12.5" />
+                            <Setter Property="Foreground" Value="{StaticResource Text60}" />
+                        </Style>
+                    </DockPanel.Resources>
                     <ProgressBar
                         DockPanel.Dock="Top"
                         Minimum="{Binding Currency.Low24H}"
@@ -98,7 +104,7 @@
                         DockPanel.Dock="Right"
                         Text="{Binding High24H}" />
                     <TextBlock
-                        Text="24H Range" HorizontalAlignment="Center" />
+                        Text="24h Range" HorizontalAlignment="Center" />
                 </DockPanel>
 
                 <!--Indicators-->
