@@ -32,12 +32,12 @@
                 <!--Rank-->
 
                 <DockPanel LastChildFill="False">
-                    <Border Background="{StaticResource Blue80}" CornerRadius="5" Margin="0 0 0 20">
+                    <Border Background="{DynamicResource Blue80}" CornerRadius="5" Margin="0 0 0 20">
                         <TextBlock
                             Text="{Binding Currency.Rank, StringFormat=Rank #{0}}"
                             FontWeight="SemiBold"
                             Padding="8 2"
-                            Foreground="{StaticResource Back15}" />
+                            Foreground="{DynamicResource Back15}" />
                     </Border>
                 </DockPanel>
 
@@ -54,12 +54,12 @@
                         FontSize="18" FontWeight="Bold"
                         VerticalAlignment="Center"
                         Margin="8 0"
-                        Foreground="{StaticResource Blue90}" />
+                        Foreground="{DynamicResource Blue90}" />
                     <TextBlock
                         Text="{Binding Currency.Symbol}"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        Foreground="{StaticResource Blue30}" />
+                        Foreground="{DynamicResource Blue30}" />
                 </DockPanel>
 
                 <!--Price-->
@@ -68,7 +68,7 @@
                     <TextBlock
                         Text="{Binding Currency.Price, Converter={StaticResource PriceToString}}"
                         FontSize="30" FontWeight="Bold"
-                        Foreground="{StaticResource Blue90}" />
+                        Foreground="{DynamicResource Blue90}" />
                     <TextBlock
                         Text="{Binding Currency.PriceChangePercentage24H, Converter={StaticResource PercentToArrow}}"
                         FontSize="20" FontWeight="SemiBold"
@@ -84,7 +84,7 @@
                     <DockPanel.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="12.5" />
-                            <Setter Property="Foreground" Value="{StaticResource Text60}" />
+                            <Setter Property="Foreground" Value="{DynamicResource Text60}" />
                         </Style>
                     </DockPanel.Resources>
                     <ProgressBar
@@ -95,8 +95,8 @@
                         Height="9"
                         Margin="0 20 0 8"
                         BorderThickness="0"
-                        Foreground="{StaticResource Green50}"
-                        Background="{StaticResource Back15}" />
+                        Foreground="{DynamicResource Green50}"
+                        Background="{DynamicResource Back15}" />
                     <TextBlock
                         DockPanel.Dock="Left"
                         Text="{Binding Low24H}" />
@@ -122,13 +122,13 @@
                                     Text="{Binding Label}"
                                     FontSize="13"
                                     Padding="10 0"
-                                    Foreground="{StaticResource Blue30}" />
+                                    Foreground="{DynamicResource Blue30}" />
                                 <TextBlock
                                     DockPanel.Dock="Right"
                                     Text="{Binding Value}"
                                     FontSize="13"
                                     Padding="10 0"
-                                    Foreground="{StaticResource Blue90}"
+                                    Foreground="{DynamicResource Blue90}"
                                     HorizontalAlignment="Right" />
                             </DockPanel>
                         </DataTemplate>
@@ -153,16 +153,17 @@
                                 <DockPanel Width="100">
                                     <Border
                                         DockPanel.Dock="Top"
-                                        Background="{StaticResource Back15}"
-                                        BorderBrush="{StaticResource Back25}"
+                                        Background="{DynamicResource Back15}"
+                                        BorderBrush="{DynamicResource Back25}"
                                         BorderThickness="1 1 0 1">
                                         <TextBlock
                                             Text="{Binding Label}"
                                             Padding="0 8"
+                                            Foreground="{DynamicResource Blue30}"
                                             HorizontalAlignment="Center" />
                                     </Border>
                                     <Border
-                                        BorderBrush="{StaticResource Back25}"
+                                        BorderBrush="{DynamicResource Back25}"
                                         BorderThickness="1 0 0 1">
                                         <TextBlock
                                             Text="{Binding Value, Converter={StaticResource PercentToString}}"
@@ -183,7 +184,7 @@
                         DockPanel.Dock="Right"
                         Margin="0 25"
                         BorderThickness="1 0 0 0"
-                        BorderBrush="{StaticResource Back25}" />
+                        BorderBrush="{DynamicResource Back25}" />
                 </DockPanel>
 
                 <!--Tickers-->
@@ -193,7 +194,7 @@
                     Text="{Binding Currency.Name, StringFormat={}{0} Markets}"
                     FontSize="24" FontWeight="SemiBold"
                     Margin="0 20 0 0"
-                    Foreground="{StaticResource Blue90}" />
+                    Foreground="{DynamicResource Blue90}" />
                 <Frame
                     DockPanel.Dock="Top"
                     NavigationUIVisibility="Hidden"

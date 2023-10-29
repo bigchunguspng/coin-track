@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         Width="1280" Height="720"
         MinWidth="960" MinHeight="720"
-        Background="White">
+        Background="{DynamicResource Back00}">
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
@@ -28,7 +28,7 @@
     <Window.Resources>
         <Style TargetType="ContentControl" BasedOn="{StaticResource Plain}" />
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource Text60}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text60}" />
         </Style>
     </Window.Resources>
 
@@ -48,9 +48,9 @@
 
         <!--Title bar-->
 
-        <Grid DockPanel.Dock="Top" Background="{StaticResource Green10}">
+        <Grid DockPanel.Dock="Top" Background="{DynamicResource Green10}">
             <TextBlock
-                Text="CoinTrack" Margin="10 0" Foreground="{StaticResource Text35}"
+                Text="CoinTrack" Margin="10 0" Foreground="{DynamicResource Green70}"
                 VerticalAlignment="Center" HorizontalAlignment="Left" />
             <StackPanel
                 WindowChrome.IsHitTestVisibleInChrome="True"
@@ -73,20 +73,22 @@
             ItemsSource="{Binding TabBar.Tabs}"
             SelectedItem="{Binding TabBar.ActiveTab}"
             ItemContainerStyle="{StaticResource Tab}"
-            BorderThickness="0 0 0 2" BorderBrush="{StaticResource Green20}"
+            BorderThickness="0 0 0 2" BorderBrush="{DynamicResource Green20}"
             Margin="0" Padding="-1 4 -1 -1"
             FocusVisualStyle="{x:Null}"
-            Background="{StaticResource Green10}">
+            Background="{DynamicResource Green10}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
+                            Foreground="{DynamicResource Green70}"
                             Text="{Binding Page.Title}" Padding="10" />
                         <Button
                             Command="{Binding CloseTab}"
                             Content="×"
+                            Foreground="{DynamicResource Green70}"
                             Style="{StaticResource TabClose}" />
                         <StackPanel.InputBindings>
                             <MouseBinding Command="{Binding CloseTab}" MouseAction="MiddleClick" />
@@ -124,11 +126,15 @@
         <KeyBinding
             Command="{Binding OpenSearchPage}"
             Modifiers="Control" Key="F" />
+        <KeyBinding
+            Command="{Binding SwitchTheme}"
+            Modifiers="Control" Key="D" />
     </Window.InputBindings>
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Command="{Binding OpenMainPage}" Header="Main page" InputGestureText="Ctrl+M" />
             <MenuItem Command="{Binding OpenSearchPage}" Header="Search" InputGestureText="Ctrl+F" />
+            <MenuItem Command="{Binding SwitchTheme}" Header="Switch theme" InputGestureText="Ctrl+D" />
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

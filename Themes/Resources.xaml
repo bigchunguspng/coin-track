@@ -1,0 +1,193 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="Control" x:Key="Plain">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="TitleBarButton" BasedOn="{StaticResource Plain}">
+        <Style.Setters>
+            <Setter Property="Width" Value="46" />
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Foreground" Value="{DynamicResource Green70}" />
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter Property="Button.Background" Value="{DynamicResource Green12}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="MaximizeButton" BasedOn="{StaticResource TitleBarButton}">
+        <Style.Triggers>
+            <DataTrigger
+                Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                Value="Normal">
+                <Setter Property="Content" Value="&#xE739;" />
+            </DataTrigger>
+            <DataTrigger
+                Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}"
+                Value="Maximized">
+                <Setter Property="Content" Value="&#xE923;" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="CloseButton" BasedOn="{StaticResource TitleBarButton}">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter Property="Button.Background" Value="#E13A3E" />
+                <Setter Property="Button.Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="ContentControl" x:Key="ControlBase" BasedOn="{StaticResource Plain}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate TargetType="ListView" x:Key="ScrollOver"> <!--Enables wheel-scrolling over listview-->
+        <ItemsPresenter />
+    </ControlTemplate>
+
+    <Style TargetType="ListViewItem" x:Key="ViewItem" BasedOn="{StaticResource ControlBase}">
+        <Setter Property="Focusable" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Back10}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ListView" x:Key="Coins" BasedOn="{StaticResource Plain}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ViewItem}" />
+        <Setter Property="Template" Value="{StaticResource ScrollOver}" />
+    </Style>
+
+    <Style TargetType="ListView" x:Key="Stuff" BasedOn="{StaticResource Coins}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+    </Style>
+
+    <Style TargetType="ListViewItem" x:Key="Tab" BasedOn="{StaticResource ControlBase}">
+        <Setter Property="Margin" Value="8 5 0 0" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Green15}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Green20}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="TabClose" BasedOn="{StaticResource ControlBase}">
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#20338951" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="HrefButton" BasedOn="{StaticResource ControlBase}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <Border
+                            x:Name="Slider"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            CornerRadius="3"
+                            Margin="0 5"
+                            Width="6" Height="Auto"
+                            Background="{DynamicResource Back25}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="Horizontal">
+                            <Setter TargetName="Slider" Property="Width" Value="Auto" />
+                            <Setter TargetName="Slider" Property="Height" Value="6" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid Width="8" Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
+                            <Track.Thumb>
+                                <Thumb
+                                    x:Name="Thumb"
+                                    Background="{TemplateBinding Foreground}"
+                                    Style="{StaticResource ScrollThumbs}" />
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton
+                                    Command="ScrollBar.PageDownCommand"
+                                    Opacity="0"
+                                    Focusable="false" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton
+                                    Command="ScrollBar.PageUpCommand"
+                                    Opacity="0"
+                                    Focusable="false" />
+                            </Track.DecreaseRepeatButton>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

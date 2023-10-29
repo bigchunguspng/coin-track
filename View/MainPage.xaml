@@ -48,7 +48,7 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="FontWeight" Value="Bold" />
                                 <Setter Property="FontSize" Value="13" />
-                                <Setter Property="Foreground" Value="{StaticResource Text30}" />
+                                <Setter Property="Foreground" Value="{DynamicResource Text30}" />
                             </Style>
                         </Grid.Resources>
                         <TextBlock Grid.Column="0" Text="#" HorizontalAlignment="Center" />
@@ -68,7 +68,7 @@
                         Style="{StaticResource Coins}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
+                                <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource Back20}">
                                     <Grid
                                         MinWidth="900" Margin="0 10">
                                         <Grid.ColumnDefinitions>
@@ -90,7 +90,7 @@
                                         <Grid.Resources>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="FontSize" Value="13.3" />
-                                                <Setter Property="Foreground" Value="{StaticResource Text60}" />
+                                                <Setter Property="Foreground" Value="{DynamicResource Text60}" />
                                             </Style>
                                         </Grid.Resources>
 
@@ -114,13 +114,13 @@
                                                     <TextBlock
                                                         Text="{Binding Currency.Name}"
                                                         VerticalAlignment="Bottom"
-                                                        Foreground="{StaticResource Text40}"
+                                                        Foreground="{DynamicResource Text40}"
                                                         FontWeight="Bold" />
                                                     <TextBlock
                                                         Text="{Binding Currency.Symbol}"
                                                         Padding="8 0" FontSize="12"
                                                         VerticalAlignment="Bottom"
-                                                        Foreground="{StaticResource Blue30}" />
+                                                        Foreground="{DynamicResource Blue30}" />
                                                 </StackPanel>
                                             </Button>
                                         </StackPanel>
@@ -158,10 +158,10 @@
                     </ListView>
 
                     <StackPanel HorizontalAlignment="Right" Margin="15">
-                        <TextBlock Foreground="{StaticResource Blue30}">
+                        <TextBlock Foreground="{DynamicResource Blue30}">
                             Powered by
                             <Hyperlink
-                                Foreground="{StaticResource Green50}"
+                                Foreground="{DynamicResource Green50}"
                                 NavigateUri="https://www.coingecko.com/en/api"
                                 RequestNavigate="Hyperlink_RequestNavigate">
                                 CoinGecko

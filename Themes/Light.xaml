@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="Back00" Color="#FFFFFF" /> <!--Background-->
+    <SolidColorBrush x:Key="Back10" Color="#f0f5fa" /> <!--ListView items highlight-->
+    <SolidColorBrush x:Key="Back15" Color="#f1f5f9" />
+    <SolidColorBrush x:Key="Back20" Color="#ECEFF2" /> <!--Borders-->
+    <SolidColorBrush x:Key="Back25" Color="#E3E7EB" /> <!--Borders, currency page-->
+
+    <SolidColorBrush x:Key="Green10" Color="#e8fcc9" /> <!--Titlebar-->
+    <SolidColorBrush x:Key="Green12" Color="#D6DFC8" /> <!--Titlebar buttons highlight-->
+    <SolidColorBrush x:Key="Green15" Color="#d2f1b6" /> <!--Tab mouse over-->
+    <SolidColorBrush x:Key="Green20" Color="#B4E29C" /> <!--Tab selected-->
+    <SolidColorBrush x:Key="Green50" Color="#4DB860" />
+    <SolidColorBrush x:Key="Green70" Color="#0e1f18" /> <!--Titlebar text-->
+
+    <SolidColorBrush x:Key="Blue20" Color="#94a3b8" /> <!--Searchbar placeholder-->
+    <SolidColorBrush x:Key="Blue30" Color="#64748b" />
+    <SolidColorBrush x:Key="Blue35" Color="#5E6875" /> <!--Searchbar input-->
+    <SolidColorBrush x:Key="Blue80" Color="#1e293b" /> <!--Rank-->
+    <SolidColorBrush x:Key="Blue90" Color="#0f172a" />
+
+    <SolidColorBrush x:Key="Text30" Color="#4a4a4a" />
+    <SolidColorBrush x:Key="Text35" Color="#3c3c3c" />
+    <SolidColorBrush x:Key="Text40" Color="#333333" />
+    <SolidColorBrush x:Key="Text60" Color="#212529" />
+
+</ResourceDictionary>

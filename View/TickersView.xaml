@@ -31,7 +31,7 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="FontWeight" Value="Bold" />
                     <Setter Property="FontSize" Value="13" />
-                    <Setter Property="Foreground" Value="{StaticResource Text30}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Text30}" />
                 </Style>
             </Grid.Resources>
             <TextBlock Grid.Column="0" Text="Exchange" Padding="10 0" />
@@ -47,7 +47,7 @@
             ItemsSource="{Binding Tickers}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
+                    <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource Back20}">
                         <Grid
                             Margin="0 10">
                             <Grid.ColumnDefinitions>
@@ -59,7 +59,7 @@
                             <Grid.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="13.3" />
-                                    <Setter Property="Foreground" Value="{StaticResource Text60}" />
+                                    <Setter Property="Foreground" Value="{DynamicResource Text60}" />
                                 </Style>
                             </Grid.Resources>
 
@@ -73,7 +73,7 @@
                                     RenderOptions.BitmapScalingMode="HighQuality" />
                                 <TextBlock
                                     Text="{Binding Exchange.Name}"
-                                    Foreground="{StaticResource Blue90}"
+                                    Foreground="{DynamicResource Blue90}"
                                     VerticalAlignment="Center"
                                     FontSize="14" FontWeight="Bold" />
                             </StackPanel>
@@ -82,12 +82,12 @@
 
                             <TextBlock Grid.Column="1" VerticalAlignment="Center">
                                 <Hyperlink
-                                    Foreground="{StaticResource Blue30}"
+                                    Foreground="{DynamicResource Blue30}"
                                     NavigateUri="{Binding TradeURL}"
                                     RequestNavigate="Hyperlink_RequestNavigate">
                                     <TextBlock
                                         Text="{Binding Pair}"
-                                        Foreground="{StaticResource Blue30}" />
+                                        Foreground="{DynamicResource Blue30}" />
                                 </Hyperlink>
                             </TextBlock>
 
