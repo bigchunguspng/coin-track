@@ -187,6 +187,21 @@
                         BorderBrush="{DynamicResource Back25}" />
                 </DockPanel>
 
+                <!--Price chart-->
+
+                <TextBlock
+                    DockPanel.Dock="Top"
+                    Text="{Binding Currency.Name, StringFormat={}{0} Price Chart}"
+                    FontSize="24" FontWeight="SemiBold"
+                    Margin="0 20 0 0"
+                    Foreground="{DynamicResource Blue90}" />
+                <Image
+                    Stretch="None"
+                    HorizontalAlignment="Left"
+                    SnapsToDevicePixels="True"
+                    Source="{Binding PriceChart, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    RenderOptions.BitmapScalingMode="NearestNeighbor" />
+
                 <!--Tickers-->
 
                 <TextBlock

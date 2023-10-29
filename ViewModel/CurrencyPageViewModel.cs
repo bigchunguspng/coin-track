@@ -1,16 +1,23 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
 using CoinTrack.Helpers;
 using CoinTrack.Model;
 using CoinTrack.Services;
 using CoinTrack.View;
+using ScottPlot;
 
 namespace CoinTrack.ViewModel;
 
 public class CurrencyPageViewModel : NotifyPropertyChanged
 {
+    public CurrencyPageViewModel()
+    {
+        AppServices.MainWindow.ThemeChanged += (_, _) => UpdateThemeDependants();
+    }
+
     /// <summary>
     /// Use this factory method for creating an object of this class. 
     /// </summary>
@@ -100,4 +107,43 @@ public class CurrencyPageViewModel : NotifyPropertyChanged
     };
 
     public record Indicator<T>(string Label, T Value);
+
+
+    public string PriceChart => GetPriceChart();
+
+    private string GetPriceChart()
+    {
+        var candles = AppServices.CoinsAPI.GetCurrencyOHLC(Currency.Id).Result.ToArray();
+
+        var plot = new Plot(720, 480);
+
+        var finance = plot.AddCandlesticks(candles);
+
+        finance.ColorUp = ColorTranslator.FromHtml("#66DE93");
+        finance.ColorDown = ColorTranslator.FromHtml("#D83A56");
+
+        var theme = AppServices.CurrentTheme;
+        var background = ColorTranslator.FromHtml(theme["Back00"].ToString()!);
+
+        plot.Style
+        (
+            figureBackground: background, dataBackground: background,
+            grid: ColorTranslator.FromHtml(theme["Back25"].ToString()!),
+            tick: ColorTranslator.FromHtml(theme["Blue30"].ToString()!)
+        );
+
+        plot.XAxis.DateTimeFormat(true);
+        plot.XAxis.TickLabelStyle(fontSize: 13.6f);
+
+        plot.YAxis.TickLabelStyle(fontSize: 13.6f);
+        plot.YAxis.TickLabelFormat(x => GetPriceString((decimal)x));
+
+        return plot.SaveFig($"chart.{Currency.Id}.{DateTime.Now.Ticks}.png");
+    }
+
+    private void UpdateThemeDependants()
+    {
+        OnPropertyChanged(nameof(PriceChart));
+        OnPropertyChanged(nameof(PriceDynamics));
+    }
 }

@@ -35,20 +35,23 @@ public class MainWindowViewModel : NotifyPropertyChanged
 
     public RelayCommand SwitchTheme { get; }
 
+
     private List<Uri> Themes { get; } = new()
     {
         new Uri("Themes/Light.xaml", UriKind.Relative),
         new Uri("Themes/Dark.xaml", UriKind.Relative)
     };
 
-    public Uri ActiveTheme { get; set; } = null!;
+    private Uri ActiveTheme { get; set; } = null!;
 
     private void SwitchThemes()
     {
         ActiveTheme = Themes[(Themes.IndexOf(ActiveTheme) + 1) % Themes.Count];
 
-        var theme = new ResourceDictionary() { Source = ActiveTheme };
+        AppServices.CurrentTheme = new ResourceDictionary() { Source = ActiveTheme };
 
-        Application.Current.Resources.MergedDictionaries[0] = theme;
+        ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
+
+    public event EventHandler? ThemeChanged;
 }

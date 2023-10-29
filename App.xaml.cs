@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -16,6 +18,23 @@ namespace CoinTrack
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             Dispatcher.UnhandledException += OnUnhandledException;
+
+            AppDomain.CurrentDomain.ProcessExit += delegate
+            {
+                var directory = new DirectoryInfo(Directory.GetCurrentDirectory());
+
+                foreach (var file in directory.GetFiles("chart.*.png"))
+                {
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch
+                    {
+                        // do nothing
+                    }
+                }
+            };
         }
 
         private void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
