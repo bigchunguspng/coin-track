@@ -65,8 +65,7 @@
 
                     <ListView
                         ItemsSource="{Binding Coins}"
-                        BorderThickness="0" Background="Transparent"
-                        ItemContainerStyle="{StaticResource Coins}">
+                        Style="{StaticResource Coins}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
@@ -156,11 +155,6 @@
                                 </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        <ListView.Template>
-                            <ControlTemplate>
-                                <ItemsPresenter /> <!--Enables wheel-scrolling over listview-->
-                            </ControlTemplate>
-                        </ListView.Template>
                     </ListView>
 
                     <StackPanel HorizontalAlignment="Right" Margin="15">

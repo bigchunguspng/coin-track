@@ -60,10 +60,8 @@
                 </Grid.ColumnDefinitions>
                 <ListView
                     Grid.Column="1"
-                    BorderThickness="0"
                     Margin="0 0 0 25"
-                    FocusVisualStyle="{x:Null}"
-                    ItemContainerStyle="{StaticResource Coins}"
+                    Style="{StaticResource Coins}"
                     ItemsSource="{Binding SearchResults, UpdateSourceTrigger=PropertyChanged}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -111,11 +109,6 @@
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Template>
-                        <ControlTemplate>
-                            <ItemsPresenter /> <!--Enables wheel-scrolling over listview-->
-                        </ControlTemplate>
-                    </ListView.Template>
                 </ListView>
             </Grid>
         </ScrollViewer>

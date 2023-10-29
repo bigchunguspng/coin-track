@@ -28,7 +28,7 @@
         <SolidColorBrush x:Key="Text40" Color="#333333" />
         <SolidColorBrush x:Key="Text60" Color="#212529" />
 
-        <Style TargetType="ContentControl" x:Key="Plain">
+        <Style TargetType="Control" x:Key="Plain">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -96,13 +96,27 @@
             </Setter>
         </Style>
 
-        <Style TargetType="ListViewItem" x:Key="Coins" BasedOn="{StaticResource ControlBase}">
+        <ControlTemplate TargetType="ListView" x:Key="ScrollOver">
+            <ItemsPresenter /> <!--Enables wheel-scrolling over listview-->
+        </ControlTemplate>
+
+        <Style TargetType="ListViewItem" x:Key="ViewItem" BasedOn="{StaticResource ControlBase}">
             <Setter Property="Focusable" Value="False" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{StaticResource Back10}" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ListView" x:Key="Coins" BasedOn="{StaticResource Plain}">
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ViewItem}" />
+            <Setter Property="Template" Value="{StaticResource ScrollOver}" />
+        </Style>
+
+        <Style TargetType="ListView" x:Key="Stuff" BasedOn="{StaticResource Coins}">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
         </Style>
 
         <Style TargetType="ListViewItem" x:Key="Tab" BasedOn="{StaticResource ControlBase}">

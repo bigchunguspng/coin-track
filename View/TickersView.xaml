@@ -43,11 +43,8 @@
         <!--Data-->
 
         <ListView
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            ItemsSource="{Binding Tickers}"
-            ItemContainerStyle="{StaticResource Coins}"
-            Focusable="False"
-            BorderThickness="0">
+            Style="{StaticResource Stuff}"
+            ItemsSource="{Binding Tickers}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource Back20}">
@@ -111,11 +108,6 @@
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <ListView.Template>
-                <ControlTemplate>
-                    <ItemsPresenter /> <!--Enables wheel-scrolling over listview-->
-                </ControlTemplate>
-            </ListView.Template>
         </ListView>
     </StackPanel>
 </UserControl>
