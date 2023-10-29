@@ -132,6 +132,8 @@
     </Window.InputBindings>
     <Window.ContextMenu>
         <ContextMenu>
+            <MenuItem Command="{Binding TabBar.CloseActiveTab}" Header="Close tab" InputGestureText="Ctrl+W" />
+            <Separator />
             <MenuItem Command="{Binding OpenMainPage}" Header="Main page" InputGestureText="Ctrl+M" />
             <MenuItem Command="{Binding OpenSearchPage}" Header="Search" InputGestureText="Ctrl+F" />
             <MenuItem Command="{Binding SwitchTheme}" Header="Switch theme" InputGestureText="Ctrl+D" />
